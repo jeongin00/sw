@@ -1,0 +1,392 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .login-container {
+    background-color: #fff;
+    width: 400px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .login-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .login-container input[type="text"],
+  .login-container input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  .login-container .remember {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    font-size: 14px;
+  }
+
+  .login-container .remember input {
+    margin-right: 8px;
+  }
+
+  .login-container .login-btn,
+  .login-container .kakao-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .login-container .login-btn {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .login-container .kakao-btn {
+    background-color: #ffe812;
+    color: #000;
+    margin-top: 10px;
+  }
+
+  .login-container .helper-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 12px;
+  }
+
+  .login-container .helper-links a {
+    text-decoration: none;
+    color: #777;
+  }
+
+  .login-container .helper-links a:hover {
+    text-decoration: underline;
+  }
+
+  .login-container .join-section {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #777;
+  }
+
+  .login-container .join-section a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    margin-left: 5px;
+  }
+
+  .login-container .join-section a:hover {
+    text-decoration: underline;
+  }
+
+
+
+/* 네비게이션 바 */
+.navbar {
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .navbar-logo img {
+    width: 120px;
+  }
+  
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    align-items: center; /* 모든 메뉴 아이템을 수평으로 정렬 */
+}
+  
+  .navbar-menu li {
+    display: inline;
+  }
+  
+  .navbar-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+  
+  .navbar-menu a:hover {
+    background-color: #f7f7f7;
+    border-radius: 5px;
+  }
+  
+  .navbar-search {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-search input {
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 200px;
+  }
+  
+  .navbar-search button {
+    padding: 7px 10px;
+    background-color: #6bc32e;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .navbar-search button:hover {
+    background-color: #5aa829;
+  }
+
+
+  /* 카테고리 드롭다운 메뉴 */
+.category-dropdown {
+    position: relative;
+}
+
+.category-btn {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    padding: 5px 10px;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* 아이콘과 텍스트를 수평 정렬 */
+}
+
+.category-menu {
+    display: none; /* 기본적으로 메뉴를 숨김 */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000;
+    width: 100%; /* 버튼 너비와 일치하게 설정 */
+}
+
+.category-dropdown:hover .category-menu {
+    display: block;
+}
+
+.category-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-menu li {
+    margin-bottom: 10px;
+}
+
+.category-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    padding: 5px 10px;
+    display: block;
+    border-radius: 5px;
+}
+
+.category-menu a:hover {
+    background-color: #f7f7f7;
+}
+
+.category-menu ul ul {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.category-menu li:hover > ul {
+    display: block;
+}
+
+
+
+/* 삼선 아이콘 (햄버거 메뉴) 스타일 */
+.menu-icon {
+    display: inline-block;
+    width: 25px; /* 아이콘 너비 */
+    height: 18px; /* 세 줄이 차지하는 높이 */
+    position: relative;
+    margin-right: 10px; /* 아이콘과 텍스트 사이 간격 */
+    cursor: pointer;
+}
+
+.menu-icon span {
+    display: block;
+    width: 100%;
+    height: 3px; /* 각 선의 두께 */
+    background-color: #333; /* 선 색상 */
+    margin-bottom: 4px; /* 선들 간 간격 */
+    border-radius: 2px; /* 둥글게 만들기 */
+}
+
+.menu-icon span:last-child {
+    margin-bottom: 0; /* 마지막 선에 간격 없애기 */
+}
+
+
+
+
+
+
+/*mypage css*/
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    padding-top: 20px;
+}
+
+/* 왼쪽 메뉴 스타일 */
+.sidebar {
+    width: 25%;
+    padding-right: 20px;
+}
+
+.sidebar h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.sidebar ul li a:hover {
+    color: #6bc32e;
+}
+
+/* 오른쪽 콘텐츠 스타일 */
+.content {
+    width: 75%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.content h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.order-status {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.order-status div {
+    text-align: center;
+    width: 18%;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+}
+
+.order-status div span {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.order-status div p {
+    font-size: 14px;
+    color: #777;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.empty-content {
+    text-align: center;
+    padding: 40px 0;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.empty-content p {
+    font-size: 14px;
+    color: #777;
+}
+
+.helper-links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.helper-links a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #333;
+}
+
+.helper-links a:hover {
+    text-decoration: underline;
+}

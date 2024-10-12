@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 페이지</title>
+    <link rel="stylesheet" href="/public/css/test.css"> <!-- 필요한 경우 경로 수정 -->
+</head>
+<body>
+    <!-- 상단 네비게이션 바 -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <a href="#"><img src="/public/png/green.png" alt="GREEN STORE"></a> <!-- 로고 미정 -->
+        </div>
+        <ul class="navbar-menu">
+            <!-- 카테고리 드롭다운 메뉴 -->
+            <li class="category-dropdown">
+                <a href="#" class="category-btn" id="category-toggle">
+                    <div class="menu-icon">
+                        <!-- 삼선 아이콘 -->
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    카테고리
+                </a>
+                <div class="category-menu" id="category-menu">
+                    <ul>
+                        <li><a href="#">셀프케어</a></li>
+                        <li><a href="#">리빙/펫</a></li>
+                        <li><a href="#">패션</a></li>
+                        <li><a href="#">문구용품</a></li>
+                        <li><a href="#">푸드</a></li>
+                        <li><a href="#">농산물</a></li>
+                        <li><a href="#">사회적거리</a></li>
+                        <li><a href="#">취미/키트</a></li>
+                        <li><a href="#">체험</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="#">소개</a></li>
+            <li><a href="#">구독상품관리</a></li>
+            <li><a href="#">주변 매장 찾기</a></li>
+            <li><a href="#">자원회수</a></li>
+            <li><a href="#">멤버십/쿠폰</a></li>
+            <li><a href="#">이벤트</a></li>
+            <li><a href="#">지역행사</a></li>
+        </ul>
+        <div class="navbar-search">
+            <input type="text" placeholder="상품, 브랜드, 성분 검색">
+            <button type="submit">검색</button>
+        </div>
+    </nav>
+
+    <!-- 로그인 폼 -->
+    <div class="login-container">
+        <h2>로그인</h2>
+        <form action="/process/login" method="POST">
+            <input type="text" name="id" placeholder="아이디" required />
+            <input type="password" name="password" placeholder="비밀번호 (8~12자, 영문+숫자+특수문자)" required />
+            <div class="remember">
+                <input type="checkbox" name="remember" />
+                <label for="remember">아이디 저장</label>
+            </div>
+            <button type="submit" class="login-btn">로그인</button>
+            <button type="button" class="kakao-btn">카카오로 로그인</button>
+        </form>
+        <div class="helper-links">
+            <a href="#">아이디 찾기</a>
+            <a href="#">비밀번호 찾기</a>
+        </div>
+        <div class="join-section">
+            CJ ONE 통합회원으로 가입하고<br />
+            올리브영에서 편안한 쇼핑하세요!
+            <a href="#">회원가입</a>
+        </div>
+    </div>
+    <script src="/js/test.js"></script>
+</body>
+</html>
