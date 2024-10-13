@@ -8,18 +8,49 @@ const static = require('serve-static') // 조상 경로 설정 sw폴더를 임�
 // Database connection pool
 const pool = mysql.createPool({
     connectionLimit: 10,
-    host: '127.0.0.1',
+    host: 'localhost',
     user: 'root',
     password: '1234',
     database: 'swdata',
     debug:false
 })
 
+// 테이블 생성 함수
+const createTable = () => {
+    pool.getConnection((err, conn) => {
+        if (err) {
+            console.log('MySQL 연결 오류:', err);
+            return;
+        }
+
+        const createTableQuery = `
+            CREATE TABLE IF NOT EXISTS users (
+                id VARCHAR(100) NOT NULL COMMENT '사용자 로그인 id',
+                name VARCHAR(100) NOT NULL COMMENT '사용자 이름',
+                age SMALLINT UNSIGNED NOT NULL COMMENT '사용자 나이',
+                password VARCHAR(300) NOT NULL COMMENT '로그인 암호, 패스워드',
+                PRIMARY KEY (id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+        `;
+
+        conn.query(createTableQuery, (err, result) => {
+            conn.release();
+            if (err) {
+                console.log('테이블 생성 중 오류 발생:', err);
+                return;
+            }
+        });
+    });
+};
+
 //웹서버 만들기
 const app = express()
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use('/public', static(path.join(__dirname, 'public')));//public 디렉토리 지정
+
+// 서버 시작 시 테이블 생성 호출
+createTable();
 
 app.post('/process/adduser', (req,res)=> {
     console.log('/process/adduser 호출됨 '+req)
