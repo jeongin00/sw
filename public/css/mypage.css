@@ -1,0 +1,115 @@
+/*mypage css*/
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    padding-top: 20px;
+}
+
+/* 왼쪽 메뉴 스타일 */
+.sidebar {
+    width: 25%;
+    padding-right: 20px;
+}
+
+.sidebar h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.sidebar ul li a:hover {
+    color: #6bc32e;
+}
+
+/* 오른쪽 콘텐츠 스타일 */
+.content {
+    width: 75%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.content h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.order-status {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.order-status div {
+    text-align: center;
+    width: 18%;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+}
+
+.order-status div span {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.order-status div p {
+    font-size: 14px;
+    color: #777;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.empty-content {
+    text-align: center;
+    padding: 40px 0;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.empty-content p {
+    font-size: 14px;
+    color: #777;
+}
+
+.helper-links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.helper-links a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #333;
+}
+
+.helper-links a:hover {
+    text-decoration: underline;
+}

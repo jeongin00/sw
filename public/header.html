@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인 페이지</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="/public/css/yuna.css"> <!-- 필요한 경우 경로 수정 -->
+=======
+    <link rel="stylesheet" href="/public/css/test.css"> <!-- 필요한 경우 경로 수정 -->
+>>>>>>> 8849870 (please)
  <!-- Font Awesome 라이브러리 추가 -->
  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
@@ -46,7 +50,11 @@
  </header>
  <br><br>
 <div class="logo-search">
+<<<<<<< HEAD
  <img src="img/favicon-48x48.ico" alt="Favicon" class="favicon">
+=======
+ <img src="/public/png/favicon-48x48.ico" alt="Favicon" class="favicon">
+>>>>>>> 8849870 (please)
  <div class="logo">GREEN STORE</div>
  <!-- 검색창과 돋보기 버튼을 포함하는 div 추가 -->
  <div class="search-container">
@@ -88,8 +96,56 @@
     <button class="main-button">이벤트</button>
     <button class="main-button">지역 행사</button>
 </nav>
+<<<<<<< HEAD
 <hr class="category-divider2">
 
+=======
+<!-- Footer start -->
+<hr class="category-divider2">
+<div class="footer bg-dark text-white-50 pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Get In Touch</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i> 부산광역시 사하구 낙동대로 550번길 37 </p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i> 김다현, 심유나, 황정인 </p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i> info@example.com</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Quick Links</h5>
+                <a class="btn btn-link text-white-50" href="">1:1 문의</a>
+                <a class="btn btn-link text-white-50" href="">자주하는 질문</a>
+                <a class="btn btn-link text-white-50" href="">공지사항</a>
+                <a class="btn btn-link text-white-50" href="">이용약관</a>
+                <a class="btn btn-link text-white-50" href="">개인정보처리방침</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Newsletter</h5>
+                <p class="newsletter-text">뉴스레터를 구독하면 다양한 소식을 받을 수 있어요.</p>
+                <div class="position-relative mx-auto" style="max-width: 400px;">
+                    <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">신청</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="#">GREEN STORE</a>, All Right Reserved. 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+>>>>>>> 8849870 (please)
 </body>
 <script>
     document.getElementById('category-toggle').addEventListener('click', function() {
@@ -100,5 +156,47 @@
             categoryMenu.style.display = 'none';
         }
     });
+<<<<<<< HEAD
+=======
+
+    document.getElementById('search-btn').addEventListener('click', function() {
+            // 입력된 검색어 가져오기
+            var query = document.getElementById('search-input').value;
+            
+            // 검색어가 입력되었는지 확인
+            if (query) {
+                // 검색어가 있으면 alert로 검색어를 출력 (기본 동작 테스트)
+                alert('검색어: ' + query + ' 로 검색합니다.');
+                
+                // 여기에 검색 기능을 처리할 코드를 추가할 수 있습니다.
+                // 예를 들어, 서버로 검색어를 전송하여 검색 결과를 가져오는 작업을 할 수 있습니다.
+                performSearch(query);  // 검색 함수 호출
+            } else {
+                // 검색어가 없으면 경고 메시지 표시
+                alert('검색어를 입력해주세요.');
+            }
+        });
+        function displaySearchResults(results) {
+        var resultsContainer = document.getElementById('results-container');
+        resultsContainer.innerHTML = ''; // 이전 검색 결과 초기화
+
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<p>검색 결과가 없습니다.</p>';
+            return;
+        }
+
+        results.forEach(function(result) {
+            var resultItem = document.createElement('div');
+            resultItem.classList.add('result-item');
+            resultItem.innerHTML = `
+                <h3>${result.productName}</h3>
+                <p>브랜드: ${result.brand}</p>
+                <p>가격: ${result.price}</p>
+            `;
+            resultsContainer.appendChild(resultItem);
+        });
+    }
+
+>>>>>>> 8849870 (please)
 </script>
 </html>
