@@ -1,8 +1,24 @@
 {
+  "name": "vsgreenstore",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "express": "^4.21.1",
     "mysql": "^2.18.1",
+    "mysql2": "^3.11.3",
     "path": "^0.12.7",
-    "serve-static": "^1.16.2"
-  }
+    "serve-static": "^1.16.2",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "mongoose": "^8.7.0",
+    "sequelize": "^6.37.4"
+  },
+  "description": ""
 }
