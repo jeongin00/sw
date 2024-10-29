@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이 페이지</title>
+    <link rel="stylesheet" href="/public/css/test.css"> <!-- 필요한 경우 경로 수정 -->
+</head>
+<body>
+    <!-- 상단 네비게이션 바 -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <a href="#"><img src="/public/png/green.png" alt="GREEN STORE"></a> <!-- 로고 미정 -->
+        </div>
+        <ul class="navbar-menu">
+            <!-- 카테고리 드롭다운 메뉴 -->
+            <li class="category-dropdown">
+                <a href="#" class="category-btn" id="category-toggle">
+                    <div class="menu-icon">
+                        <!-- 삼선 아이콘 -->
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    카테고리
+                </a>
+                <div class="category-menu" id="category-menu">
+                    <ul>
+                        <li><a href="#">셀프케어</a></li>
+                        <li><a href="#">리빙/펫</a></li>
+                        <li><a href="#">패션</a></li>
+                        <li><a href="#">문구용품</a></li>
+                        <li><a href="#">푸드</a></li>
+                        <li><a href="#">농산물</a></li>
+                        <li><a href="#">사회적거리</a></li>
+                        <li><a href="#">취미/키트</a></li>
+                        <li><a href="#">체험</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="#">소개</a></li>
+            <li><a href="#">구독상품관리</a></li>
+            <li><a href="#">주변 매장 찾기</a></li>
+            <li><a href="#">자원회수</a></li>
+            <li><a href="#">멤버십/쿠폰</a></li>
+            <li><a href="#">이벤트</a></li>
+            <li><a href="#">지역행사</a></li>
+        </ul>
+        <div class="navbar-search">
+            <input type="text" placeholder="상품, 브랜드, 성분 검색">
+            <button type="submit">검색</button>
+        </div>
+    </nav>
+    <div class="container">
+        <!-- 왼쪽 메뉴 -->
+        <div class="sidebar">
+            <h2>마이페이지</h2>
+            <ul>
+                <li><a href="#">주문/배송 조회</a></li>
+                <li><a href="#">취소/환불 내역</a></li>
+                <li><a href="#">장바구니</a></li>
+                <li><a href="#">좋아요</a></li>
+                <li><a href="#">재입고 알림</a></li>
+                <li><a href="#">CJ ONE 포인트</a></li>
+                <li><a href="#">쿠폰</a></li>
+            </ul>
+            <h2>마이 활동</h2>
+            <ul>
+                <li><a href="#">리뷰</a></li>
+                <li><a href="#">상품 Q&A</a></li>
+                <li><a href="#">이벤트 참여 내역</a></li>
+            </ul>
+            <h2>마이 정보</h2>
+            <ul>
+                <li><a href="#">회원정보 수정</a></li>
+                <li><a href="#">배송지 관리</a></li>
+                <li><a href="#">MY 올영매장</a></li>
+            </ul>
+        </div>
+
+        <!-- 오른쪽 콘텐츠 -->
+        <div class="content">
+            <h2>주문/배송 조회</h2>
+            <div class="order-status">
+                <div>
+                    <span>0</span>
+                    <p>주문접수</p>
+                </div>
+                <div>
+                    <span>0</span>
+                    <p>결제완료</p>
+                </div>
+                <div>
+                    <span>0</span>
+                    <p>배송준비중</p>
+                </div>
+                <div>
+                    <span>0</span>
+                    <p>배송중</p>
+                </div>
+                <div>
+                    <span>1</span>
+                    <p>배송완료</p>
+                </div>
+            </div>
+
+            <div class="section-title">좋아요</div>
+            <div class="empty-content">
+                <p>좋아요한 상품이 없습니다.</p>
+            </div>
+
+            <div class="section-title">1:1 문의 내역</div>
+            <div class="empty-content">
+                <p>문의 내역이 없습니다.</p>
+            </div>
+
+            <div class="helper-links">
+                <a href="#">1:1 문의 내역 더보기</a>
+                <a href="#">상품 Q&A 내역 더보기</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/test.js"></script>
+</body>
+</html>
