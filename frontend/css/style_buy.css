@@ -17,18 +17,18 @@ body {
     align-items: center; /* 수직 가운데 정렬 */
     margin-left: 40px; /* 페이지 왼쪽 끝에서 여백 추가 */
   }
-  
+
+    /* 로고 클릭 시 홈페이지로 이동 */
+    .homepage-logo-link {
+      text-decoration: none; /* 밑줄 제거 */
+    }
+
   /* 입점 신청 버튼 왼쪽 아이콘 스타일 */
   .icon {
     color: #434343; /* 입점 신청 버튼과 동일한 색상 */
     font-size: 12px; /* 입점 신청 버튼과 동일한 크기 */
     margin-right: 5px; /* 아이콘과 텍스트 간의 간격 최소화 */
     cursor: pointer; /* 클릭 가능한 커서 유지 */
-  }
-
-  /* 로고 클릭 시 홈페이지로 이동 */
-  .homepage-logo-link {
-    text-decoration: none; /* 밑줄 제거 */
   }
   
   /* '로그인', '회원가입', '장바구니', '주문배송' 버튼 스타일 수정 */
@@ -78,7 +78,7 @@ body {
   .favicon {
     width: 70px; /* Favicon 크기 조정 */
     height: 70px;
-    margin-right: 10px; /* Favicon과 로고 사이의 간격 */
+    margin-right: 3px; /* Favicon과 로고 사이의 간격 */
     margin-left: 20px; /* 왼쪽 간격 */
   }
   
@@ -96,7 +96,7 @@ body {
     width: 400px;
     margin: 0 auto; /* 가운데 정렬을 위해 auto 사용 */
   }
-
+  
   .search-box {
     width: 100%;
     height: 35px;
@@ -112,7 +112,6 @@ body {
     width: 450px;
     margin: 0 auto; /* 가운데 정렬을 위한 설정 */
   }
-
   
   /* 돋보기 버튼 스타일 */
   .search-button {
@@ -255,123 +254,187 @@ body {
 nav.main-menu:hover .category-menu {
     display: block;
 }
-/* =========================여기 까지가 header============================*/
 
+/* 메인 레이아웃 */
+main {
+  display: flex;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 카테고리 섹션 (왼쪽) */
+#categories {
+  width: 10%;
+  background-color: #ffffff; /* 카테고리 전체 배경을 흰색으로 설정 */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#categories h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* 선택된 카테고리 제목 아래 얇은 회색 줄 */
+.category-divider {
+  width: 80%; /* 텍스트보다 약간 더 넓게 설정 */
+  height: 1px;
+  background-color: #ddd;
+  margin: 20px 0; /* 위아래 여백 50px 설정 */
+}
+
+#categories button {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  background: none; /* 버튼 배경을 투명하게 설정 */
+  border: none; /* 버튼 테두리 제거 */
+  cursor: pointer;
+  font-size: 1em;
+  text-align: center;
+  color: #333; /* 텍스트 색상 설정 */
+}
+
+#categories button:hover {
+  background-color: #e0e0e0;
+}
+
+
+/* 구독 관리 제목 아래 회색 줄 */
+.management-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  margin-top: 40px; /* 버튼에서 40px 아래로 위치 */
+}
+
+/* 구독 상품 목록 스타일 */
+#subscription-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
 
 /*** Footer ***/
 .footer .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0 200px; /* 좌우 여백을 padding으로 설정 */
-    /* margin-left, margin-right 제거 */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 200px; /* 좌우 여백을 padding으로 설정 */
+  /* margin-left, margin-right 제거 */
 }
 
 .footer .col-lg-3, .footer .col-md-6 {
-    margin-bottom: 20px; /* 각 컬럼 간격 */
+  margin-bottom: 20px; /* 각 컬럼 간격 */
 }
 
 .footer .col-lg-3 h5, 
 .footer .col-md-6 h5 {
-    font-size: 25px; /* 원하는 크기로 설정 */
-    font-weight: bold;
+  font-size: 25px; /* 원하는 크기로 설정 */
+  font-weight: bold;
 }
 
 .footer {
-    background-color: #EAEAEA; /* 배경 */
-    color: #353535; /* 텍스트 */
-    padding: 10px 0; /* 위아래 패딩 */
-    width: 100%; /* 전체 너비 설정 */
+  background-color: #EAEAEA; /* 배경 */
+  color: #353535; /* 텍스트 */
+  padding: 10px 0; /* 위아래 패딩 */
+  width: 100%; /* 전체 너비 설정 */
 }
 
 .footer .container-fluid {
-    padding: 0; /* 여백 제거 */
+  padding: 0; /* 여백 제거 */
 }
 
 .footer .mb-2 {
-    color : #353535; /* 원하는 색상으로 변경 */
+  color : #353535; /* 원하는 색상으로 변경 */
 }
 
 .d-flex {
-    display: flex; /* Flexbox 적용 */
-    justify-content: start; /* 왼쪽 정렬 */
+  display: flex; /* Flexbox 적용 */
+  justify-content: start; /* 왼쪽 정렬 */
 }
 
 .footer .btn.btn-social {
-    margin-right: 10px;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--light);
-    border: 1px solid rgba(44, 44, 44, 0.256);
-    border-radius: 35px;
-    transition: .3s;
+  margin-right: 10px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--light);
+  border: 1px solid rgba(44, 44, 44, 0.256);
+  border-radius: 35px;
+  transition: .3s;
 }
 
 .footer .btn.btn-social:hover {
-    color: var(--primary);
-    border-color: var(--light);
+  color: var(--primary);
+  border-color: var(--light);
 }
 
 .footer .btn.btn-link {
-    display: block;
-    margin-bottom: 5px;
-    padding: 0;
-    text-align: left;
-    font-size: 18px;
-    font-weight: normal;
-    color: #6c757d;  /* 회색 (#6c757d)으로 설정 */
-    margin-bottom: 10px; /* 링크들 사이 간격을 늘리기 위한 여백 */
-    text-decoration: none; /* 링크 밑줄 제거 */
-    text-transform: capitalize;
-    transition: .3s;
+  display: block;
+  margin-bottom: 5px;
+  padding: 0;
+  text-align: left;
+  font-size: 18px;
+  font-weight: normal;
+  color: #6c757d;  /* 회색 (#6c757d)으로 설정 */
+  margin-bottom: 10px; /* 링크들 사이 간격을 늘리기 위한 여백 */
+  text-decoration: none; /* 링크 밑줄 제거 */
+  text-transform: capitalize;
+  transition: .3s;
 }
 
 .footer .btn.btn-link::before {
-    position: relative;
-    content: "\f105";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    margin-right: 10px;
+  position: relative;
+  content: "\f105";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-right: 10px;
 }
 
 .footer .btn.btn-link:hover {
-    letter-spacing: 1px;
-    color: #ffffff; /* 필요 시, hover 시 색상 변경 */
-    box-shadow: none;
+  letter-spacing: 1px;
+  color: #ffffff; /* 필요 시, hover 시 색상 변경 */
+  box-shadow: none;
 }
 
 .newsletter-text {
-    color: #6c757d; /* 회색 (#6c757d)로 폰트 색상 변경 */
+  color: #6c757d; /* 회색 (#6c757d)로 폰트 색상 변경 */
 }
 
 .footer .form-control {
-    background-color: transparent; /* 투명한 배경 */
-    border: 1px solid rgba(0, 0, 0, 0.5); /* 테두리 */
-    color: #ffffff; /* 텍스트 흰색 */
-    padding: 10px;
+  background-color: transparent; /* 투명한 배경 */
+  border: 1px solid rgba(0, 0, 0, 0.5); /* 테두리 */
+  color: #ffffff; /* 텍스트 흰색 */
+  padding: 10px;
 }
 
 .footer .btn-primary {
-    background-color: #00B98E; /* 버튼 색상 */
-    width: 40px;
-    height: 30px;
-    border: none;
-    color: #ffffff; /* 버튼 텍스트 색상 */
+  background-color: #00B98E; /* 버튼 색상 */
+  width: 40px;
+  height: 30px;
+  border: none;
+  color: #ffffff; /* 버튼 텍스트 색상 */
 }
 
 .footer .copyright {
-    padding: 25px 0;
-    font-size: 15px;
-    border-top: 1px solid rgba(30, 30, 30, 0.068); /* 상단 경계선 */
-    text-align: center; /* 중앙 정렬 */
-    padding-bottom: 10px; /* 기존 padding-bottom을 줄여서 공간을 줄임 */
-    margin-bottom: 0; /* 필요 시 margin-bottom도 설정 */
+  padding: 25px 0;
+  font-size: 15px;
+  border-top: 1px solid rgba(30, 30, 30, 0.068); /* 상단 경계선 */
+  text-align: center; /* 중앙 정렬 */
+  padding-bottom: 10px; /* 기존 padding-bottom을 줄여서 공간을 줄임 */
+  margin-bottom: 0; /* 필요 시 margin-bottom도 설정 */
 }
 
 .footer .copyright a {
-    color: var(--light);
-    color: #00B98E; /* 링크 강조색 */
+  color: var(--light);
+  color: #00B98E; /* 링크 강조색 */
 }

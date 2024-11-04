@@ -258,6 +258,43 @@ nav.main-menu:hover .category-menu {
 /* =========================여기 까지가 header============================*/
 
 
+/* =========================여기 부터 main============================*/
+main {
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 0 100px; /* 양쪽에 100px 여백 */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* 양쪽에 그림자 추가 */
+    max-width: 1100px; /* 최대 너비 설정 (필요에 따라 조정) */
+    background-color: #fff; /* 그림자가 잘 보이도록 배경색 설정 */
+}
+
+.aboutus-text {
+    display: block;
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    color:#2b914b;
+    margin-bottom: 50px; /* 텍스트 밑에 50px 공백 추가 */
+}
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.aboutus-image img {
+    width: 118%;
+    max-width: 1500px;
+    margin-bottom: 0; /* 이미지 간 여백 제거 */
+    padding: 0; /* 이미지 간 여백 제거 */
+}
+
+
+/* =========================여기 까지가 main============================*/
+
+
+/* =========================여기 부터 Footer============================*/
 /*** Footer ***/
 .footer .row {
     display: flex;

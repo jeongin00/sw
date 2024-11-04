@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>GREEN STORE</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta name="author" content="GREEN POWER" />
+    <meta name="description" content="다양한 친환경 제품을 만나보세요. 환경을 지키는 소비! GREEN STORE!" />
+    <title>GREEN STORE - 홈페이지</title>
     <meta content="" name="keywords">
-    <meta content="" name="description">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="/frontend/css/style.css">
 
@@ -32,8 +33,6 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -44,7 +43,7 @@
         <div class="header-right">
             <a href="/public/adduser.html"><button>회원가입</button></a>
             <a href="/public/login.html"><button>로그인</button></a>
-            <button>장바구니</button>
+            <a href="/frontend/cart.html"><button>장바구니</button></a>
             <button>주문배송</button>
         </div>
     </header>
@@ -68,25 +67,26 @@
     <hr class="category-divider1"> <!-- 위쪽 가로줄 -->
    
     <nav class="thirdline">
-       <nav class="main-menu">
-           <i class="fas fa-bars menu-icon"></i> <!-- 메뉴 아이콘 -->
-           <button class="category-button" id="category-toggle">카테고리</button>
-           <ul class="category-menu" id="category-menu">
-               <li><a href="#">셀프케어</a></li>
-               <li><a href="#">리빙</a></li>
-               <li><a href="#">펫 용품</a></li>
-               <li><a href="#">패션</a></li>
-               <li><a href="#">문구용품</a></li>
-               <li><a href="#">푸드</a></li>
-               <li><a href="#">친환경 농산물</a></li>
-               <li><a href="#">취미/키트</a></li>
-               <li><a href="#">체험</a></li>
-           </ul>
-       </nav>
+        <nav class="main-menu">
+            <i class="fas fa-bars menu-icon"></i> <!-- 메뉴 아이콘 -->
+            <button class="category-button" id="category-toggle">카테고리</button>
+            <ul class="category-menu" id="category-menu">
+                <li><a href="/public/selfcare.html">셀프케어</a></li>
+                <li><a href="/public/living.html">리빙</a></li>
+                <li><a href="/public/pet.html">펫</a></li>
+                <li><a href="/public/fassion.html">패션</a></li>
+                <li><a href="/public/supplies.html">문구용품</a></li>
+                <li><a href="/public/food.html">푸드</a></li>
+                <li><a href="/public/agricultural.html">농산물</a></li>
+                <li><a href="#">사회적거리</a></li>
+                <li><a href="/public/kit.html">취미/키트</a></li>
+                <li><a href="#">체험</a></li>
+            </ul>
+        </nav>
        <span class="first-main-button"></span>
-       <button class="main-button">About Us</button>
+       <a class="homepage-logo-link" href="/frontend/aboutus.html"><button class="main-button">About Us</button></a>
        <a class="homepage-logo-link" href="/frontend/subscribe.html"><button class="main-button">구독상품 관리</button></a>
-       <button class="main-button">주변매장 찾기</button>
+       <a class="homepage-logo-link" href="/frontend/place.html"><button class="main-button">주변매장 찾기</button></a>
        <button class="main-button">자원 회수</button>
        <button class="main-button">멤버쉽/쿠폰</button>
        <button class="main-button">이벤트</button>
@@ -115,7 +115,7 @@
         <div class="rolling-banner">
             <!-- 슬라이드 1 -->
             <div class="banner-slide" id="slide1">
-                <img src="/frontend/img/image1.jpg" alt="Banner Image 1" class="banner-image">
+                <img src="/frontend/img/image1.png" alt="Banner Image 1" class="banner-image">
                 <div class="banner-text1">
                     <!--<h2 class="slide-title">WELCOME TO GREEN STORE</h2>
                     <p class="slide-description">
@@ -129,7 +129,7 @@
             </div>
             <!-- 슬라이드 2 -->
             <div class="banner-slide" id="slide2">
-                <img src="/frontend/img/image2.jpg" alt="Banner Image 2" class="banner-image">
+                <img src="/frontend/img/image2.png" alt="Banner Image 2" class="banner-image">
                 <div class="banner-text2">
                     <!--<h2 class="slide-title">친환경 제품을 구독해봐요</h2>
                     <p class="slide-description">
@@ -137,12 +137,12 @@
                         매달 필요한 상품을 정하고 할인된 가격으로 친환경 제품을 받을 수 있는 기회<br>
                         친환경 포장으로 쓰레기를 줄였어요.
                     </p>-->
-                    <button class="see-more-button">See more</button>
+                    <a class="homepage-logo-link" href="/frontend/subscribe.html"><button class="see-more-button">See more</button></a>
                 </div>
             </div>
             <!-- 슬라이드 3 -->
             <div class="banner-slide" id="slide3">
-                <img src="frontend/img/image3.jpg" alt="Banner Image 3" class="banner-image">
+                <img src="/frontend/img/image3.png" alt="Banner Image 3" class="banner-image">
                 <div class="banner-text3">
                     <!--<h2 class="slide-title">우리 지역 친환경 행사, 어떤 것이 있을까?</h2>
                     <p class="slide-description">
@@ -268,7 +268,7 @@
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-white mb-4">Get In Touch</h5>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i> 부산광역시 사하구 낙동대로 550번길 37 </p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i> 김다현, 심유나, 황정인 </p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>심유나, 황정인 </p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i> info@example.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>

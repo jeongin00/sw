@@ -2,15 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="GREEN POWER" />
     <meta name="description" content="다양한 친환경 제품을 만나보세요. 환경을 지키는 소비! GREEN STORE!" />
-    <title>GREEN STORE - 자원 회수</title>
+    <title>GREEN STORE - 장바구니</title>
     <meta content="" name="keywords">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-    <!-- Template Stylesheet -->
-    <link rel="stylesheet" href="css/style_recycle.css">
+    <link rel="stylesheet" href="css/style_cart.css">
 
     <!-- Font Awesome 라이브러리 추가 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -97,7 +95,79 @@
    <hr class="category-divider2">
 
 
-       <!-- Footer Start -->
+<!-- Main Start -->
+<main class="cart-container">
+    <div class="delivery-tab">
+        <span class="delivery-type">일반 배송</span>
+    </div>
+    
+    <h2 class="cart-title">그린스토어 배송상품</h2>
+    
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th><input type="checkbox" class="select-all" /></th>
+                <th>상품정보</th>
+                <th>판매가</th>
+                <th>수량</th>
+                <th>구매가</th>
+                <th>배송정보</th>
+                <th>선택</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="cart-item">
+                <td><input type="checkbox" /></td> <!--수정 필요)체크박스 누르면 전체 상품 선택되도록 변경-->
+                <td class="product-info">
+                    <img src="/frontend/img/product6.jpg" alt="Product Image" class="product-image"> <!-- 수정 필요) 이미지 연결 --> 
+                    <div class="item-details">
+                        <p class="product-name">친환경 칫솔 세트(5개입)</p> <!-- 수정 필요) db로 개인 장바구니 상품 연결 --> 
+                    </div>
+                </td>
+                <td>₩9,000</td>
+                <td>
+                    <select class="quantity-select">
+                        <option value="1">1</option> <!-- 수정 필요) 수량 입력으로 변경 + 수정 버튼 추가 --> 
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </td>
+                <td class="product-total">₩9,000</td>
+                <td>2,500원<br>도서산간제외</td> <!-- 수정 필요) 일정 가격 이상이거나 멤버쉽 가입했을 경우, 무료 배송 --> 
+                <td>
+                    <button class="quick-buy-btn">바로구매</button> <!-- 수정 필요) 바로 구매 클릭 시, 비회원/회원 구매 페이지 이동 --> 
+                    <button class="remove-item-btn">삭제</button><!-- 수정 필요) 장바구니 db에서 상품 삭제--> 
+                </td>
+            </tr>
+            <!-- 추가적인 항목들을 이 형식으로 추가 -->
+        </tbody>
+    </table>
+    
+    <div class="cart-actions">
+        <button class="delete-selected-btn">선택상품 삭제</button> <!-- 수정 필요) 장바구니 db에서 상품 삭제 + 체크박스 연결-->
+        <button class="delete-all-btn">품절상품 삭제</button> <!-- 겉만 놔두기 -->
+    </div>
+
+    <div class="cart-summary">
+        <div class="summary-details">
+            <p>총 판매가 <span class="total-price">₩28,000</span></p> <!-- 수정 필요) 체크 박스 체크된 상품의 가격의 총 합으로-->
+            <p>총 할인금액 <span class="total-discount">₩0</span></p> <!-- 겉만 두기 -->
+            <p>배송비 <span class="shipping-fee">₩0</span></p> <!-- 수정 필요) 위의 배송비와 연결-->
+        </div>
+        <h3 class="total-amount">총 결제예상금액 <span>₩28,000</span></h3> <!-- 수정 필요) 총 판매가 연결-->
+        <p class="shipping-info">배송비는 쿠폰할인금액에 따라 변경될 수 있습니다.</p>
+    </div>
+    <div class="order-buttons">
+        <button class="select-order-btn">선택주문</button>
+        <button class="all-order-btn">전체주문</button>
+    </div>
+    
+</main>
+
+<!-- Main End -->
+
+<!-- Footer Start -->
        <div class="footer bg-dark text-white-50 pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
@@ -187,3 +257,5 @@
 }
 
 </script>
+</body>
+</html>
