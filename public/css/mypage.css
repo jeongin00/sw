@@ -1,115 +1,77 @@
-/*mypage css*/
-
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    padding-top: 20px;
-}
-
-/* 왼쪽 메뉴 스타일 */
-.sidebar {
-    width: 25%;
-    padding-right: 20px;
-}
-
-.sidebar h2 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.sidebar ul {
-    list-style: none;
-    margin-bottom: 20px;
-}
-
-.sidebar ul li {
-    margin-bottom: 10px;
-}
-
-.sidebar ul li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 14px;
-}
-
-.sidebar ul li a:hover {
-    color: #6bc32e;
-}
-
-/* 오른쪽 콘텐츠 스타일 */
-.content {
-    width: 75%;
-    background-color: #fff;
+.main-container {
+    max-width: 1000px;
+    margin: 70px auto;
+    background-color: white;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px; /* 모서리를 둥글게 */
 }
 
-.content h2 {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 20px;
+/* 섹션 간 여백 추가 */
+.main-container section {
+    margin-bottom: 100px; /* 섹션들 사이의 여백 */
 }
 
+
+h2 {
+    margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.more {
+    font-size: 14px;
+    color: #888;
+    text-decoration: none;
+}
 .order-status {
     display: flex;
     justify-content: space-between;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
     margin-bottom: 20px;
 }
-
-.order-status div {
+.status-item {
     text-align: center;
-    width: 18%;
-    padding: 10px;
-    background-color: #f7f7f7;
-    border-radius: 10px;
 }
-
-.order-status div span {
-    display: block;
+.status-number {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.order-status div p {
-    font-size: 14px;
-    color: #777;
-}
-
-.section-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.empty-content {
-    text-align: center;
-    padding: 40px 0;
-    background-color: #f7f7f7;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-.empty-content p {
-    font-size: 14px;
-    color: #777;
-}
-
-.helper-links {
-    display: flex;
-    justify-content: space-between;
-}
-
-.helper-links a {
-    font-size: 14px;
-    text-decoration: none;
     color: #333;
 }
-
-.helper-links a:hover {
-    text-decoration: underline;
+.status-text {
+    font-size: 12px;
+    color: #666;
+}
+.arrow {
+    color: #ccc;
+    font-size: 20px;
+    align-self: center;
+}
+.empty-state {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+.empty-icon {
+    font-size: 48px;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+.bottom-sections {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.bottom-section {
+    width: 48%;
+}
+.bottom-content {
+    background-color: white;
+    border: 1px solid #eee;
+    padding: 20px;
+    text-align: center;
+    color: #888;
 }

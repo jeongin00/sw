@@ -45,6 +45,7 @@
             <a href="/public/login.html"><button>로그인</button></a>
             <a href="/frontend/cart.html"><button>장바구니</button></a>
             <button>주문배송</button>
+            <a href="#" onclick="checkLogin()"><button>마이페이지</button></a>
         </div>
     </header>
     <br><br>
@@ -98,14 +99,14 @@
     <!-- 카테고리 탭 메뉴 -->
     <!--<div class="category-divider2"> -->
         <div class="tab-menu" id="category-tab-menu">
-            <div class="tab-item"><a href="#self-care">셀프케어</a></div>
-            <div class="tab-item"><a href="#living">리빙</a></div>
-            <div class="tab-item"><a href="#living">펫 용품</a></div>
-            <div class="tab-item"><a href="#fashion">패션</a></div>
-            <div class="tab-item"><a href="#stationery">문구용품</a></div>
-            <div class="tab-item"><a href="#food">푸드</a></div>
-            <div class="tab-item"><a href="#farm-produce">친환경 농산물</a></div>
-            <div class="tab-item"><a href="#hobby-kit">취미/키트</a></div>
+            <div class="tab-item"><a href="/public/selfcare.html">셀프케어</a></div>
+            <div class="tab-item"><a href="/public/living.html">리빙</a></div>
+            <div class="tab-item"><a href="/public/pet.html">펫 용품</a></div>
+            <div class="tab-item"><a href="/public/fashion.html">패션</a></div>
+            <div class="tab-item"><a href="/public/supplies.html">문구용품</a></div>
+            <div class="tab-item"><a href="/public/food.html">푸드</a></div>
+            <div class="tab-item"><a href="/public/agricultural.html">친환경 농산물</a></div>
+            <div class="tab-item"><a href="/public/kit.html">취미/키트</a></div>
             <div class="tab-item"><a href="#experience">체험</a></div>
         </div>
     <!--/div> -->
@@ -438,6 +439,6 @@
         });
     });
     </script>
-
+    <script src="/public/js/logincheck.js"></script>
 </body>
 </html>
