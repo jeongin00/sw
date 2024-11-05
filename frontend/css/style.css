@@ -760,3 +760,24 @@ nav.main-menu:hover .category-menu {
     color: #00B98E; /* 링크 강조색 */
 }
 
+
+
+
+
+
+
+/*탄소량표시 CSS*/
+.carbon-savings {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+    color: #28a745;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* 페이드 인 효과 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

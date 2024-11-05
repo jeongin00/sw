@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        /* 숫자 애니메이션 스타일 */
+        .carbon-savings {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            color: #28a745;
+            animation: fadeIn 1s ease-in-out;
+        }
+    
+        /* 페이드 인 효과 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <meta name="author" content="GREEN POWER" />
@@ -164,6 +181,14 @@
                 </button>
         </div>   
     </div> <!--롤링배너 끝-->
+
+    <!-- 그래프+탄소량 추가 -->
+    <div id="canvas-container" style="width: 700px; height: autpx; margin: 0 auto;">
+        <canvas id="salesChart"></canvas></div>  
+    <div id="carbon-savings" class="carbon-savings">
+        <p>오늘 줄어든 탄소량: <span id="carbonAmount"></span>g</p>
+    </div>
+    <!-- 그래프+탄소량 끝 -->
 
     <hr class="category-divider3-1"> <!-- 가로줄 -->
 
@@ -438,7 +463,79 @@
             updateProductSlider();
         });
     });
+
+    //탄소량 자바
+ // 페이지 로드 시 또는 새로고침 시 탄소 절약량 표시 및 애니메이션 효과
+ document.addEventListener('DOMContentLoaded', function () {
+        function animateCarbonSavings(finalValue) {
+            const carbonElement = document.getElementById('carbonAmount');
+            let currentValue = 0;
+            const increment = Math.ceil(finalValue / 100);
+            const interval = 20;
+            
+            const counter = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= finalValue) {
+                    currentValue = finalValue;
+                    clearInterval(counter);
+                }
+                carbonElement.textContent = currentValue.toLocaleString();
+            }, interval);
+        }
+
+        function generateCarbonSavings() {
+            const carbonSavings = 1173; // 탄소량을 1173g으로 고정
+            animateCarbonSavings(carbonSavings);
+    }
+
+        // 그래프 데이터
+        const quarters = ["2023년 3분기", "2023년 4분기", "2024년 1분기", "2024년 2분기", "2024년 3분기"];
+        const salesData = [50000, 47000, 55000, 62000, 70000];
+
+        // Chart.js 그래프 생성
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: quarters,
+                datasets: [{
+                    label: '친환경 제품 판매량 (단위: 대)',
+                    data: salesData,
+                    borderColor: '#d9534f',
+                    backgroundColor: '#d9534f',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#d9534f',
+                    pointBorderColor: '#d9534f',
+                    pointRadius: 5,
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // 초기 실행
+        generateCarbonSavings();
+    });
     </script>
     <script src="/public/js/logincheck.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </body>
 </html>
