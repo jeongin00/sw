@@ -17,5 +17,9 @@ mypage 버튼 바꾸고 자바스크립트 각자 추가해야함
 (<a href="#" onclick="checkLogin()"><button>마이페이지</button></a>)
 
 
-왜자꾸안되는걸까
-
+유나 코드 수정부분
+frontend>css
+style.css 마지막 부분에 탄소량 애니메이션 css추가
+frontend>index.html
+롤링베너 밑에 그래프랑 탄소량 추가
+자바스크립트 맨밑에 추가!
