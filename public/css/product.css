@@ -1,0 +1,248 @@
+        /* 폰트 적용 */
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        body, ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        /* 라이브러리 */
+        .cell {
+            float: left;
+            box-sizing: border-box;
+        }
+        .row::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .cell-right {
+            float: right;
+            box-sizing: border-box;
+        }
+        .display-none {
+            display: none;
+        }
+        
+        
+/* 카트 CSS */
+.cart-icon {
+    position: absolute;
+    bottom: 10px; /* img-box의 아래쪽으로 10px 떨어짐 */
+    right: 10px;  /* img-box의 오른쪽으로 10px 떨어짐 */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.cart-icon:hover {
+    color: #007bff; /* 아이콘 hover 색상 */
+}
+       
+        /* 중앙 상품리스트 */
+        /* 중앙 상품리스트 */
+.item-list {
+    display: flex;
+    flex-wrap: wrap; /* 아이템을 여러 줄로 나눔 */
+    justify-content: space-between; /* 아이템 간격 조정 */
+    gap: 20px; /* 아이템 간격 */
+}
+
+.item-list > .list > div {
+    height: auto; /* 높이 자동으로 조정 */
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid #ececec;
+}
+
+.item-list > .list > div > .item-1 {
+    position: relative; /* .cart-icon 위치 고정을 위한 설정 */
+    width: calc(25% - 15px); /* 한 줄에 4개씩 배치 (여백 고려) */
+    height: 440px; /* 고정된 높이 */
+    margin-bottom: 20px; /* 아래쪽 여백 */
+    margin-right: 10px;
+    margin-top: 60px;
+    box-sizing: border-box;
+}
+
+.item-list > .list > div > .item-1 > .img-box {
+    border: 1px solid #e9e9e9;
+    width: 100%; /* 부모 요소의 너비에 맞춤 */
+    height: 100%; /* 부모 요소의 높이에 맞춤 */
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    transition: box-shadow 0.3s;
+    position: relative; /* 장바구니 아이콘을 img-box 내부에서 배치할 수 있도록 설정 */
+}
+
+.item-1 .img-box img {
+    width: 100%; /* 이미지가 부모 요소의 너비에 맞추도록 설정 */
+    height: auto; /* 이미지의 가로 세로 비율 유지 */
+    max-height: 200px; /* 이미지의 최대 높이를 설정하여 크기를 제한 */
+    object-fit: contain; /* 이미지가 지정된 영역 내에서 비율을 유지하며 맞춰지도록 설정 */
+}
+
+.item-list > .list > div > .item-1 > .img-box > .con-txt {
+    padding: 10px 10px 10px;
+    text-align: center;
+    width: 90%;
+    background-color: #fff;
+}
+
+.item-list > .list > div > .item-1 > .img-box > .con-txt > .name {
+    font-size: 18px;
+    font-weight: 300;
+    white-space: nowrap; /* 텍스트를 한 줄로 표시 */
+    overflow: hidden;
+    text-overflow: ellipsis; /* 넘치는 텍스트는 생략 */
+}
+
+.item-list > .list > div > .item-1 > .img-box > .con-txt > .info {
+    font-size: 14px;
+    font-weight: 300;
+    color: #888;
+    margin: 10px 0;
+    white-space: nowrap; /* 텍스트를 한 줄로 표시 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-list > .list > div > .item-1 > .img-box > .con-txt > .price {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.item-list > .list > div > .item-1 > .img-box > .con-txt > .info > p {
+    text-decoration: line-through;
+    margin-top: -3px;
+}
+
+.item-list > .list > div > .item-1:hover > .img-box {
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
+}
+
+        
+
+
+/* 카테고리 섹션 (왼쪽) */
+#categories {
+    width: 10%; /* 카테고리 전체 너비 설정 */
+    background-color: #ffffff; /* 카테고리 전체 배경을 흰색으로 설정 */
+    padding: 10px; /* 안쪽 여백 */
+    display: flex; /* 플렉스박스 사용 */
+    flex-direction: column; /* 세로 방향으로 배치 */
+    align-items: center; /* 수평 가운데 정렬 */
+    margin-top: 10px;
+    margin-left: 5px;
+
+}
+  
+  #categories h2 {
+    font-size: 1.8em; /* 제목 폰트 크기 */
+    margin-bottom: 20px; /* 아래 여백 */
+    color: #333; /* 제목 텍스트 색상 */
+  }
+  
+  /* 선택된 카테고리 제목 아래 얇은 회색 줄 */
+  .category-divider {
+    width: 75%; /* 줄의 너비 설정 */
+    height: 1px; /* 줄의 높이 설정 */
+    background-color: #ddd; /* 줄 색상 */
+    margin: 20px 0; /* 위아래 여백 */
+  }
+  
+  #categories button {
+    width: 100%; /* 버튼 너비 설정 */
+    padding: 10px; /* 버튼 안쪽 여백 */
+    margin: 5px 0; /* 버튼 간의 간격 */
+    background: none; /* 버튼 배경 제거 */
+    border: none; /* 버튼 테두리 제거 */
+    cursor: pointer; /* 클릭 가능한 커서 */
+    font-size: 1em; /* 버튼 텍스트 크기 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    color: #333; /* 버튼 텍스트 색상 */
+  }
+  
+  #categories button:hover {
+    background-color: #e0e0e0; /* 버튼 호버 시 배경색 */
+  }
+  
+
+
+
+  /* 콘텐츠 섹션 (오른쪽) */
+  #content {
+    width: 10%; /* 콘텐츠 섹션 너비 설정 */
+    padding: 20px; /* 콘텐츠 섹션 안쪽 여백 */
+    display: flex; /* 플렉스박스 사용 */
+    flex-direction: column; /* 세로 방향으로 배치 */
+    align-items: center; /* 수평 가운데 정렬 */
+  }
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*버튼 관련 CSS*/
+
+  .down-btn {
+    margin-top: -1px;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 30px;
+    border-left: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
+    border-right: 1px solid #ececec;
+    border-top: 2px solid white;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.down-btn > div {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translateY(-50%) translateX(-40%);
+}
+
+.down-btn > p > i {
+    position: absolute;
+    font-size: 12px;
+    top: 55%;
+    left: 75%;
+    transform: translateY(-55%) translateX(-75%);
+}
+
+
+
+
+
+
+
+
+
+
