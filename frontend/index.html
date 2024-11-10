@@ -43,9 +43,8 @@
         <div class="header-right">
             <a href="/public/adduser.html"><button>회원가입</button></a>
             <a href="/public/login.html"><button>로그인</button></a>
-            <a href="/frontend/cart.html"><button>장바구니</button></a>
+            <a href="/public/cart.html"><button>장바구니</button></a>
             <button>주문배송</button>
-            <a href="#" onclick="checkLogin()"><button>마이페이지</button></a>
         </div>
     </header>
     <br><br>
@@ -74,12 +73,11 @@
             <ul class="category-menu" id="category-menu">
                 <li><a href="/public/selfcare.html">셀프케어</a></li>
                 <li><a href="/public/living.html">리빙</a></li>
-                <li><a href="/public/pet.html">펫</a></li>
+                <li><a href="/public/pet.html">펫 용품</a></li>
                 <li><a href="/public/fassion.html">패션</a></li>
                 <li><a href="/public/supplies.html">문구용품</a></li>
                 <li><a href="/public/food.html">푸드</a></li>
-                <li><a href="/public/agricultural.html">농산물</a></li>
-                <li><a href="#">사회적거리</a></li>
+                <li><a href="/public/agricultural.html">친환경 농산물</a></li>
                 <li><a href="/public/kit.html">취미/키트</a></li>
                 <li><a href="#">체험</a></li>
             </ul>
@@ -91,7 +89,7 @@
        <button class="main-button">자원 회수</button>
        <button class="main-button">멤버쉽/쿠폰</button>
        <button class="main-button">이벤트</button>
-       <button class="main-button">지역 행사</button>
+       <a class="homepage-logo-link" href="/public/local.html"><button class="main-button">지역 행사</button></a>
    </nav>
    <hr class="category-divider2">
    
@@ -165,6 +163,31 @@
         </div>   
     </div> <!--롤링배너 끝-->
 
+<!-- 그래프+탄소량 추가 -->
+<div id="big-canvas-container">
+    <!-- 그래프가 들어가는 왼쪽 영역 -->
+    <div id="canvas-container">
+        <div id="canvas-container-title">"GREEN STORE의 탄소 발자국"</div><br>
+        <canvas id="salesChart"></canvas>
+        <div id="carbon-savings" class="carbon-savings">
+            <p>오늘 줄인 탄소 양: <span id="todayCarbonAmount">100</span>kg CO2e ⬇</p>
+            <p>이때까지 줄인 누적 탄소량: <span id="carbonAmount">1,173</span>kg CO2e ⬇</p>
+        </div>
+    </div>
+
+    <!-- 요약 설명이 들어가는 오른쪽 영역 -->
+    <div class="carbon-summary">
+        <h3><<span id="carbonAmount">1,173</span>kg 탄소 절감의 힘은?></h3>
+        <p>나무 심기: 약 55그루의 나무를 심는 효과</p>
+        <p>자동차 배출량: 매일 100km 운전 자동차 한 달치 배출</p>
+        <p>가정 전기 절감: 6가구 한 달 전기 소비량</p>
+        <p>숲 흡수량: 소나무 숲 1헥타르가 1년간 흡수</p>
+    </div>
+</div>
+
+    
+    <!-- 그래프+탄소량 끝 -->
+
     <hr class="category-divider3-1"> <!-- 가로줄 -->
 
 <!-- 새로나온 제품 -->
@@ -176,6 +199,22 @@
         </div>
         <div class="new-product">
             <img src="/frontend/img/product8.jpg" alt="Product 8">
+        </div>
+    </div>
+</div>
+
+    <!-- 가로줄 -->
+    <hr class="category-divider3">
+
+<!-- 새로나온 패키지 -->
+<div class="new-package-text-table">
+    <p class="middle-text"><strong><span style="font-size: 26px;">추천하는 신상 패키지</span></strong></p>
+    <div class="new-package-container">
+        <div class="new-package">
+            <img src="/frontend/img/package1.png" alt="Package 1">
+        </div>
+        <div class="new-package">
+            <img src="/frontend/img/package2.png" alt="Package 2">
         </div>
     </div>
 </div>
@@ -438,7 +477,121 @@
             updateProductSlider();
         });
     });
+
+ //탄소량 관련 js   
+ // 페이지 로드 시 또는 새로고침 시 탄소 절약량 표시 및 애니메이션 효과
+ document.addEventListener('DOMContentLoaded', function () {
+    function animateCarbonSavings(finalValue, elementId) {
+        const carbonElement = document.getElementById(elementId);
+        let currentValue = 0;
+        const increment = Math.ceil(finalValue / 100);
+        const interval = 20;
+        
+        const counter = setInterval(() => {
+            currentValue += increment;
+            if (currentValue >= finalValue) {
+                currentValue = finalValue;
+                clearInterval(counter);
+            }
+            carbonElement.textContent = currentValue.toLocaleString();
+        }, interval);
+    }
+
+    function generateCarbonSavings() {
+        const totalSavings = 1173; // Total savings for cumulative display
+        const todaySavings = 123;  // Today's savings
+        animateCarbonSavings(totalSavings, 'carbonAmount');
+        animateCarbonSavings(todaySavings, 'todayCarbonAmount');
+    }
+
+    generateCarbonSavings();
+
+
+        // 그래프 데이터
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["23년 3분기", "23년 4분기", "24년 1분기", "24년 2분기", "24년 3분기"],
+                datasets: [
+                {
+                    label: '누적 탄소 양',
+                    data: [723, 834, 913, 1042, 1173],
+                    borderColor: '#28a745',         // Dark green for line color
+                    backgroundColor: '#28a745',      // Dark green for point color
+                    borderWidth: 2,
+                    pointBackgroundColor: '#28a745', // Dark green for point fill
+                    pointBorderColor: '#28a745',     // Dark green for point border
+                    pointRadius: 5,
+                    fill: false,
+                    yAxisID: 'y'
+                },
+                    {
+                        label: '오늘 줄인 탄소 양',
+                        data: [68, 75, 55, 93, 123],
+                        borderColor: '#71d083',
+                        backgroundColor: '#71d083',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#71d083',
+                        pointBorderColor: '#71d083',
+                        pointRadius: 5,
+                        fill: false,
+                        yAxisID: 'y1'  // Assigns this dataset to the second Y-axis
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: '누적 탄소 양'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString();
+                            }
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: '오늘 줄인 탄소 양'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString();
+                            }
+                        },
+                        grid: {
+                            drawOnChartArea: false  // Avoids overlaying the grid from the second Y-axis
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+
+        // 초기 실행
+        generateCarbonSavings();
+    });
+
+    //탄소 자바 끝
     </script>
     <script src="/public/js/logincheck.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--캔버스 자바스크립트-->
+
 </body>
+<script src="/public/js/logincheck.js"></script>
 </html>
