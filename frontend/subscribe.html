@@ -93,10 +93,11 @@
 </nav>
 <hr class="category-divider2">
 
+    <!-- main Start -->
      <!-- 메인 섹션 -->
      <main>
         <!-- 카테고리 섹션 (좌측에 위치) -->
-        <aside id="categories">
+        <aside id="categories" style="flex: 1;">
             <h2 id="category-title">전체</h2>
             <div class="category-divider"></div> <!-- 카테고리 아래 회색 줄 -->
             <button onclick="filterProducts('전체')">전체</button>
@@ -109,6 +110,7 @@
             <button onclick="filterProducts('친환경 농산물')">친환경 농산물</button>
             <button onclick="filterProducts('취미/키트')">취미/키트</button>
         </aside>
+        
 
         <!-- 콘텐츠 섹션 (우측에 위치) -->
         <section id="content">
@@ -161,7 +163,7 @@
             <button onclick="subscribe()" class="subscribe-button">구독하기</button>
         </div>
     </main>
-
+    <!-- main End -->
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
@@ -310,6 +312,72 @@
         localStorage.setItem("activeButton", "product-list");
     }   
 
+    // 카테고리 필터 및 제목 업데이트
+    function filterProducts(category) {
+        document.getElementById('category-title').textContent = category;
+
+        // 서버로부터 선택한 카테고리의 상품을 가져옴
+        fetch(`http://localhost:3000/products?category=${encodeURIComponent(category)}`)
+            .then(response => response.json())
+            .then(data => {
+                const productGrid = document.getElementById("product-grid");
+                productGrid.innerHTML = ''; // 기존 내용을 비움
+
+                // 가져온 데이터를 HTML로 렌더링
+                data.forEach(product => {
+                    const productDiv = document.createElement("div");
+                    productDiv.classList.add("product-card");
+
+                    productDiv.innerHTML = `
+                        <img src="${product.image}" alt="${product.name}" class="product-image">
+                        <p class="product-brand">${product.brand}</p>
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <p class="product-carbon">${product.carbon.toFixed(2)} Kg CO2e</p>
+                    `;
+
+                    productGrid.appendChild(productDiv);
+                });
+            })
+            .catch(error => {
+                console.error("데이터를 가져오는 중 오류가 발생했습니다:", error);
+            });
+    }
+
+    // 페이지 로드시 기본 카테고리 데이터 불러오기
+    document.addEventListener("DOMContentLoaded", function () {
+        filterProducts('전체'); // 페이지 로드 시 전체 상품을 표시
+    });
+
+// HTML에서 API 호출 코드 추가 @@@@@@@@@@@@
+function loadProductData() {
+    fetch('http://localhost:3000/products')
+        .then(response => response.json())
+        .then(data => {
+            const productGrid = document.getElementById("product-grid");
+            productGrid.innerHTML = ''; // 기존 내용을 비움
+
+            // 데이터를 HTML로 렌더링
+            data.forEach(product => {
+                const productDiv = document.createElement("div");
+                productDiv.classList.add("product");
+
+                productDiv.innerHTML = `
+                    <h3>${product.name}</h3>
+                    <p>브랜드: ${product.brand}</p>
+                    <p>카테고리: ${product.category}</p>
+                    <p>탄소 배출량 감소: ${product.carbon}</p>
+                `;
+                
+                productGrid.appendChild(productDiv);
+            });
+        })
+        .catch(error => {
+            console.error("데이터를 가져오는 중 오류가 발생했습니다:", error);
+        });
+}
+
+
 
     // 구독 관리 버튼 클릭 시 로그인 여부 확인 후 페이지 변경
     function handleSubscription() {
@@ -328,17 +396,43 @@
         document.getElementById("product-list-btn").classList.remove("active-button");
         localStorage.setItem("activeButton", "subscription-management");
     }
-
-    // 카테고리 필터 및 제목 업데이트
+    </script>
+    <script>
+    // 상품 데이터를 가져와서 상품 카드로 표시하는 부분
     function filterProducts(category) {
-        document.getElementById('category-title').textContent = category; // 선택한 카테고리명 업데이트
-        const products = document.querySelectorAll('.product');
-        products.forEach(product => {
-            // 선택한 카테고리에 해당하는 상품만 표시
-            product.style.display = (category === '전체' || product.dataset.category === category) ? 'block' : 'none';
-        });
+        document.getElementById('category-title').textContent = category;
+
+        // 서버로부터 선택한 카테고리의 상품을 가져옴
+        fetch(`http://localhost:3000/products?category=${encodeURIComponent(category)}`)
+            .then(response => response.json())
+            .then(data => {
+                const productGrid = document.getElementById("product-grid");
+                productGrid.innerHTML = ''; // 기존 내용을 비움
+
+                // 가져온 데이터를 HTML로 렌더링
+                data.forEach(product => {
+                    const productDiv = document.createElement("div");
+                    productDiv.classList.add("product-card");
+
+                    // 상품 클릭 시 패키지 상세 페이지로 이동하도록 링크 추가
+                    productDiv.innerHTML = `
+                        <a href="/frontend/packagedetail.html?id=${product.id}">
+                            <img src="${product.image}" alt="${product.name}" class="product-image">
+                            <p class="product-brand">${product.brand}</p>
+                            <h3 class="product-name">${product.name}</h3>
+                            <p class="product-description">${product.description}</p>
+                            <p class="product-carbon">${product.carbon.toFixed(2)} Kg CO2e</p>
+                        </a>
+                    `;
+
+                    productGrid.appendChild(productDiv);
+                });
+            })
+            .catch(error => {
+                console.error("데이터를 가져오는 중 오류가 발생했습니다:", error);
+            });
     }
-</script>
+    </script>
 
 
 </body>
