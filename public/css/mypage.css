@@ -1,0 +1,181 @@
+.mypage-membership img{
+    width: 800px; 
+    height: 120px;
+}
+
+
+.main-container {
+    max-width: 1000px;
+    margin: 70px auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px; /* 모서리를 둥글게 */
+}
+
+/* 섹션 간 여백 추가 */
+.main-container section {
+    margin-bottom: 100px; /* 섹션들 사이의 여백 */
+}
+
+
+h2 {
+    margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.more {
+    font-size: 14px;
+    color: #888;
+    text-decoration: none;
+}
+.order-status {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.status-item {
+    text-align: center;
+}
+.status-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+.status-text {
+    font-size: 12px;
+    color: #666;
+}
+.arrow {
+    color: #ccc;
+    font-size: 20px;
+    align-self: center;
+}
+.empty-state {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+.empty-icon {
+    font-size: 48px;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+.bottom-sections {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.bottom-section {
+    width: 48%;
+}
+.bottom-content {
+    background-color: white;
+    border: 1px solid #eee;
+    padding: 20px;
+    text-align: center;
+    color: #888;
+}
+
+
+
+/*카트 CSS*/
+
+
+.cart-table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cart-header, .cart-item {
+    display: table-row;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-cell {
+    display: table-cell;
+    padding: 10px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.cart-header .cart-cell {
+    font-weight: bold;
+    background-color: #f8f8f8;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+.item-details {
+    text-align: left;
+}
+
+.item-name {
+    font-weight: bold;
+}
+
+.item-brand {
+    font-size: 12px;
+    color: #555;
+}
+
+.item-price, .item-total-price {
+    color: red;
+}
+
+.item-carbon {
+    color: #888;
+}
+
+.quantity-select {
+    width: 50px;
+}
+
+.cart-controls button {
+    margin: 5px 0;
+}
+
+
+
+#carbon-footprint-section {
+    text-align: left;
+    font-family: Arial, sans-serif;
+}
+
+
+
+
+
+
+#footprint-container {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 10px;
+}
+
+.footprint-icon {
+    font-size: 30px;
+    color: lightgray;
+    transition: color 0.3s;
+    transform: translateY(5px); /* 기본 위치 조정 */
+}
+
+.footprint-icon:nth-child(odd) {
+    transform: translateY(-10px); /* 홀수번째 아이콘을 위로 올림 */
+}
+
+.footprint-icon.active {
+    color: green; /* 색상이 활성화될 때의 색상 */
+}

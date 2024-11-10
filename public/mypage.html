@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta name="author" content="GREEN POWER" />
+    <meta name="description" content="다양한 친환경 제품을 만나보세요. 환경을 지키는 소비! GREEN STORE!" />
+    <title>마이페이지</title>
+    <meta content="" name="keywords">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/public/css/yuna.css"> <!-- 필요한 경우 경로 수정 -->
+    <link rel="stylesheet" href="/public/css/mypage.css">
+    <!-- Font Awesome 라이브러리 추가 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Font Awesome 라이브러리 추가 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Favicon 설정 -->
+    <link rel="icon" href="/frontend/css/favicon-48x48.ico" type="image/x-icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <i class="fas fa-chevron-down icon"></i> <!-- 아래로 향하는 아이콘 추가 -->
+            <button>입점 신청</button>
+        </div>
+        <div class="header-right">
+            <a href="/public/adduser.html"><button>회원가입</button></a>
+            <a href="/public/login.html"><button>로그인</button></a>
+            <a href="/public/cart.html"><button>장바구니</button></a>
+            <button>주문배송</button>
+        </div>
+    </header>
+    <br><br>
+   <div class="logo-search">
+    <img src="/frontend/img/greenstore_favicon.png" alt="Favicon" class="favicon">
+    <a class="homepage-logo-link" href="/frontend/index.html"><div class="logo">GREEN STORE</div></a>
+    <!-- 검색창과 돋보기 버튼을 포함하는 div 추가 -->
+    <div class="search-container">
+        <input type="text" placeholder="상품 검색" class="search-box" id="search-input">
+        <button type="button" class="search-button"  onclick="handleSearch()">
+            <i class="fas fa-search"></i> <!-- Font Awesome의 돋보기 아이콘 -->
+        </button>
+    </div>
+    <div class="interest-store">
+        <i class="far fa-star"></i>
+        <button>관심매장 소식</button>
+    </div>
+   </div>
+   
+    <hr class="category-divider1"> <!-- 위쪽 가로줄 -->
+   
+    <nav class="thirdline">
+        <nav class="main-menu">
+            <i class="fas fa-bars menu-icon"></i> <!-- 메뉴 아이콘 -->
+            <button class="category-button" id="category-toggle">카테고리</button>
+            <ul class="category-menu" id="category-menu">
+                <li><a href="/public/selfcare.html">셀프케어</a></li>
+                <li><a href="/public/living.html">리빙</a></li>
+                <li><a href="/public/pet.html">펫 용품</a></li>
+                <li><a href="/public/fassion.html">패션</a></li>
+                <li><a href="/public/supplies.html">문구용품</a></li>
+                <li><a href="/public/food.html">푸드</a></li>
+                <li><a href="/public/agricultural.html">친환경 농산물</a></li>
+                <li><a href="/public/kit.html">취미/키트</a></li>
+                <li><a href="#">체험</a></li>
+            </ul>
+        </nav>
+        <span class="first-main-button"></span>
+        <a class="homepage-logo-link" href="/frontend/aboutus.html"><button class="main-button">About Us</button></a>
+        <a class="homepage-logo-link" href="/frontend/subscribe.html"><button class="main-button">구독상품 관리</button></a>
+        <a class="homepage-logo-link" href="/frontend/place.html"><button class="main-button">주변매장 찾기</button></a>
+        <button class="main-button">자원 회수</button>
+        <a class="homepage-logo-link" href="/frontend/membership.html"><button class="main-button">멤버쉽/쿠폰</button></a>
+        <button class="main-button">이벤트</button>
+        <button class="main-button">지역 행사</button>
+    </nav>
+    <hr class="category-divider2">
+<!--header 끝-->
+
+ <!--메인 시작-->
+ <div class="main-container">
+    <section>
+        <h2>
+            나의 멤버스 <span style="font-size: 14px; color: #888;"></span>
+        </h2>
+        <div class="mypage-membership">
+            <img src="/frontend/img/mypage_membership_img.png"; alt="나의 멤버스;">
+        </div>
+    </section>
+
+    <section>
+        <h2>
+            주문/배송 조회 <span style="font-size: 14px; color: #888;"></span>
+            <a href="#" class="more">더보기 &gt;</a>
+        </h2>
+        <div class="order-status">
+            <div class="status-item">
+                <div class="status-number">0</div>
+                <div class="status-text">주문접수</div>
+            </div>
+            <div class="arrow">&gt;</div>
+            <div class="status-item">
+                <div class="status-number">0</div>
+                <div class="status-text">결제완료</div>
+            </div>
+            <div class="arrow">&gt;</div>
+            <div class="status-item">
+                <div class="status-number">0</div>
+                <div class="status-text">배송준비중</div>
+            </div>
+            <div class="arrow">&gt;</div>
+            <div class="status-item">
+                <div class="status-number">0</div>
+                <div class="status-text">배송중</div>
+            </div>
+            <div class="arrow">&gt;</div>
+            <div class="status-item">
+                <div class="status-number">0</div>
+                <div class="status-text">배송완료</div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>장바구니</h2>
+        <div id="cart-items" class="cart-table">
+            <div class="cart-header">
+                <div class="cart-cell">상품정보</div>
+                <div class="cart-cell">판매가</div>
+                <div class="cart-cell">수량</div>
+                <div class="cart-cell">구매가</div>
+                <div class="cart-cell">탄소량</div>
+                <div class="cart-cell">선택</div>
+            </div>
+            <!-- 장바구니 아이템들이 여기에 추가됩니다 -->
+        </div>
+        <div class="empty-state" id="empty-state">
+            <div class="empty-icon">!</div>
+            <div>장바구니에 담긴 상품이 없습니다.</div>
+        </div>
+        <button onclick="purchaseAllItems()">전체 구매</button> <!-- 전체 구매 버튼 추가 -->
+    </section>
+
+    <section id="carbon-footprint-section">
+        <h3>나의 탄소 발자국</h3>
+        <p>친환경 소비로 이만큼의 탄소를 줄였어요!</p>
+        <hr><br>
+        <div id="footprint-container">
+            <!-- 발자국 아이콘 8개 배치 (지그재그 스타일) -->
+            <i class="footprint-icon fas fa-shoe-prints"></i>
+            <i class="footprint-icon fas fa-shoe-prints"></i>
+            <i class="footprint-icon fas fa-shoe-prints"></i>
+            <i class="footprint-icon fas fa-shoe-prints"></i>
+            <i class="footprint-icon fas fa-shoe-prints"></i>
+            <i class="footprint-icon fas fa-shoe-prints"></i>
+            <i class="footprint-icon fas fa-shoe-prints"></i>
+            <i class="footprint-icon fas fa-shoe-prints"></i>
+        </div><br><hr>
+        <p id="carbon-reduction-amount">나의 누적 탄소 절감량(kg CO₂e): <strong id="carbon-total"></strong> kg</p>
+    </section>
+
+    <div class="bottom-sections">
+        <div class="bottom-section">
+            <h2>
+                1:1 문의내역
+                <a href="#" class="more">더보기 &gt;</a>
+            </h2>
+            <div class="bottom-content">
+                최근 1개월간 문의하신 내용이 없습니다.
+            </div>
+        </div>
+        <div class="bottom-section">
+            <h2>
+                상품 Q&A내역
+                <a href="#" class="more">더보기 &gt;</a>
+            </h2>
+            <div class="bottom-content">
+                최근 1개월간 문의하신 내용이 없습니다.
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Footer start -->
+<hr class="category-divider2">
+<div class="footer bg-dark text-white-50 pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Get In Touch</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i> 부산광역시 사하구 낙동대로 550번길 37 </p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>심유나, 황정인 </p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i> info@example.com</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Quick Links</h5>
+                <a class="btn btn-link text-white-50" href="">1:1 문의</a>
+                <a class="btn btn-link text-white-50" href="">자주하는 질문</a>
+                <a class="btn btn-link text-white-50" href="">공지사항</a>
+                <a class="btn btn-link text-white-50" href="">이용약관</a>
+                <a class="btn btn-link text-white-50" href="">개인정보처리방침</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Newsletter</h5>
+                <p class="newsletter-text">뉴스레터를 구독하면 다양한 소식을 받을 수 있어요.</p>
+                <div class="position-relative mx-auto" style="max-width: 400px;">
+                    <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">신청</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="#">GREEN STORE</a>, All Right Reserved. 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+<script>
+
+
+document.addEventListener('DOMContentLoaded', function() {
+      // 전역 변수 설정
+    let totalCarbonReduction = 0;
+    let cartTotal = 0;
+    
+    // 서버에서 userId를 가져오는 API 호출
+    fetch('/api/user')
+        .then(response => response.json())
+        .then(data => {
+            if (data.userId) {
+                window.userId = data.userId; // 전역 변수로 userId 설정
+            } else {
+                console.error('로그인된 사용자가 아닙니다.');
+            }
+        })
+        .catch(error => console.error('유저 ID 불러오기 실패:', error));
+
+    fetch('/api/user-carbon')
+        .then(response => response.json())
+        .then(data => {
+            const carbonTotalDisplay = document.getElementById('carbon-total');
+            console.log('받아온 carbon 데이터:', data.carbon); // 받은 carbon 데이터 확인
+            carbonTotalDisplay.textContent = data.carbon; // 그대로 kg 단위로 표시
+            updateFootprint(data.carbon); // 탄소 발자국 UI 업데이트
+        })
+        .catch(error => console.error('유저 탄소 데이터 불러오기 실패:', error));
+    // 장바구니 데이터를 가져와서 표시하는 부분
+    fetch('/get-cart-items')
+        .then(response => response.json())
+        .then(items => {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const emptyState = document.getElementById('empty-state');
+            let cartTotal = 0;
+
+            // 장바구니 항목을 저장할 객체
+            const cartItems = {};
+
+            // 동일한 상품이 있을 경우 수량을 증가
+            items.forEach(item => {
+                if (cartItems[item.name]) {
+                    cartItems[item.name].quantity += 1; // 이미 있으면 수량 증가
+                } else {
+                    cartItems[item.name] = { ...item, quantity: 1 }; // 없으면 새로 추가
+                }
+            });
+
+            if (Object.keys(cartItems).length === 0) {
+                emptyState.style.display = 'block';
+                cartItemsContainer.style.display = 'none';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            cartItemsContainer.style.display = 'table';
+
+            // 수정된 cartItems를 사용해 UI에 표시
+Object.values(cartItems).forEach(item => {
+    const imageSrc = `/public/png/${item.category}/${item.num}.png`;
+    const itemTotalPrice = item.price * item.quantity;
+    
+    cartTotal += itemTotalPrice;
+
+    const itemHTML = `
+        <div class="cart-item" data-id="${item.name}" data-base-carbon="${item.carbon}">
+            <div class="cart-cell item-details">
+                <img src="${imageSrc}" alt="${item.name}" />
+                <div>
+                    <div class="item-name">${item.name}</div>
+                    <div class="item-brand">${item.brand}</div>
+                </div>
+            </div>
+            <div class="cart-cell item-price">${item.price}원</div>
+            <div class="cart-cell">
+                <select class="quantity-select" onchange="updateTotal(${item.price}, ${item.carbon}, this)">
+                    ${[...Array(10).keys()].map(i => `<option value="${i + 1}" ${i + 1 === item.quantity ? 'selected' : ''}>${i + 1}</option>`).join('')}
+                </select>
+            </div>
+            <div class="cart-cell item-total-price">${itemTotalPrice}원</div>
+            <div class="cart-cell item-carbon">${item.carbon}kg</div>
+            <div class="cart-cell cart-controls">
+                <button onclick="deleteFromCart('${item.name}', '${window.userId}')">삭제</button>
+                <button onclick="purchaseItem('${item.name}')">구매</button>
+            </div>
+        </div>
+    `;
+    cartItemsContainer.insertAdjacentHTML('beforeend', itemHTML);
+});
+            const cartTotalHTML = `<div class="cart-total">장바구니 총합: <span id="cart-total">${cartTotal}원</span></div>`;
+            cartItemsContainer.insertAdjacentHTML('beforeend', cartTotalHTML);
+        })
+        .catch(error => console.error('장바구니 데이터를 가져오는 중 오류 발생:', error));
+});
+        
+function purchaseItem(productName) {
+    const selectedItem = document.querySelector(`[data-id="${productName}"]`);
+    const quantity = parseInt(selectedItem.querySelector('.quantity-select').value); // 선택된 수량을 정수로 변환
+
+    // data-base-carbon에서 기본 탄소 값 가져오기
+    const baseCarbon = parseFloat(selectedItem.dataset.baseCarbon);
+    const itemTotalCarbon = baseCarbon * quantity; // 기본 carbon 값에 수량 곱해 총 탄소량 계산
+
+    fetch('/purchase-item', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ productName, itemTotalCarbon, quantity })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message === '구매 완료') {
+            alert('구매가 완료되었습니다!');
+
+            // 누적 탄소 절감량 업데이트
+            const carbonTotalDisplay = document.getElementById('carbon-total');
+            carbonTotalDisplay.textContent = (parseFloat(carbonTotalDisplay.textContent) + itemTotalCarbon).toFixed(2);
+
+            // 탄소 발자국 UI 업데이트
+            updateFootprint(parseFloat(carbonTotalDisplay.textContent)); 
+
+            location.reload(); // 페이지 새로고침
+        }
+    })
+    .catch(error => console.error('구매 요청 중 오류 발생:', error));
+}
+function deleteFromCart(name) {
+    if (!window.userId) {
+        console.error('User ID가 정의되지 않았습니다.');
+        return;
+    }
+
+    console.log(`삭제 요청 중인 항목: Name - ${name}, User ID - ${window.userId}`);
+    
+    fetch(`/delete-cart-item/${name}/${window.userId}`, { method: 'DELETE' })
+        .then(response => {
+            if (response.ok) {
+                console.log('삭제 성공');
+                location.reload(); // 삭제 성공 후 페이지 새로고침
+            } else {
+                console.error('상품 삭제 실패');
+                response.text().then(text => console.error('응답 메시지:', text));
+            }
+        })
+        .catch(error => console.error('삭제 요청 중 오류 발생:', error));
+}
+items.forEach(item => {
+    const itemHTML = `
+        <div class="cart-item" data-id="${item.name}">
+            <div class="cart-cell item-details">
+                <div class="item-name">${item.name}</div>
+                <div class="item-brand">${item.brand}</div>
+            </div>
+            <div class="cart-cell item-price">${item.price}원</div>
+            <div class="cart-cell cart-controls">
+                <button onclick="deleteFromCart('${item.name}', '${item.user_id}')">삭제</button>
+            </div>
+        </div>
+    `;
+    cartItemsContainer.insertAdjacentHTML('beforeend', itemHTML);
+});
+
+function updateTotal(price, carbon, selectElement) {
+    const quantity = selectElement.value;
+
+    // 가격 계산
+    const itemTotalPriceElement = selectElement.closest('.cart-item').querySelector('.item-total-price');
+    itemTotalPriceElement.textContent = `${price * quantity}원`; // 가격 업데이트
+
+    // 탄소량 계산
+    const itemCarbonElement = selectElement.closest('.cart-item').querySelector('.item-carbon');
+    itemCarbonElement.textContent = `${carbon * quantity}kg`; // 수량에 맞춰 탄소량 업데이트
+
+    // 장바구니 총합 업데이트
+    calculateCartTotal();
+}
+
+// 장바구니 추가 시 cart total 증가 함수
+function addToCart(price) {
+    cartTotal += price;
+    document.getElementById('cart-total').textContent = `${cartTotal}원`;
+}
+
+// 전체 cart total 계산 함수
+function calculateCartTotal() {
+    cartTotal = Array.from(document.querySelectorAll('.item-total-price'))
+        .reduce((sum, element) => sum + parseInt(element.textContent.replace('원', '')), 0);
+    document.getElementById('cart-total').textContent = `${cartTotal}원`;
+}
+
+
+let totalCarbonReduction = 0; // kg 단위의 누적 탄소 절감량
+const footprintIcons = document.querySelectorAll('.footprint-icon');
+const carbonTotalDisplay = document.getElementById('carbon-total');
+
+function updateFootprint(carbon) {
+    const footprintIcons = document.querySelectorAll('.footprint-icon');
+    footprintIcons.forEach((icon, index) => {
+        // 각 아이콘이 carbon이 10kg 이상일 때마다 하나씩 활성화됩니다.
+        icon.classList.toggle('active', carbon >= (index + 1) * 10);
+    });
+}
+// 탄소 절감량 추가 함수 (예: 장바구니 추가 시 호출)
+function addCarbonReduction(carbon) {
+    totalCarbonReduction += carbon;
+    updateFootprint();
+}
+
+// 초기화
+updateFootprint();
+
+</script>
+    <script src="/public/js/logincheck.js"></script>
+    <script src="/js/test.js"></script>
+</body>
+</html>
