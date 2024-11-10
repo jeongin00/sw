@@ -386,68 +386,92 @@
 </script>   
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const map = L.map('map').setView([37.5665, 126.9780], 11); // 서울 중심으로 초기화
-    
-        // OpenStreetMap 타일 레이어 추가
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
-    
-        // 매장 데이터를 불러와서 마커 추가
-        fetch('/api/stores')
-            .then(response => response.json())
-            .then(stores => {
-                stores.forEach(store => {
-                    if (store.lat && store.lng) {
-                        const marker = L.marker([store.lat, store.lng]).addTo(map);
-                        marker.bindPopup(`
-                            <b>${store.name}</b><br>
-                            ${store.province} ${store.city}<br>
-                            ${store.phone || '전화번호 없음'}
-                        `);
-                    }
-                });
-            })
-            .catch(error => console.error('매장 위치를 불러오는 중 오류 발생:', error));
-        
-        // 검색 후 매장 위치로 지도 확대하는 함수
-        window.searchStores = function() {
-            const province = document.getElementById('province').value;
-            const city = document.getElementById('city').value;
-        
-            if (!province || !city) {
-                alert("지역과 시/군/구를 선택해 주세요.");
-                return;
-            }
-        
-            // 매장 검색 후, 해당 위치로 지도 확대
-            fetch('/api/stores')
-                .then(response => response.json())
-                .then(allStores => {
-                    // 검색된 매장만 필터링
-                    const filteredStores = allStores.filter(store =>
-                        store.province === province && store.city === city
-                    );
-                    
-                    if (filteredStores.length > 0) {
-                        const store = filteredStores[0]; // 첫 번째 매장 선택
-                        // 해당 매장의 위도, 경도로 지도 이동
-                        map.setView([store.lat, store.lng], 14); // 줌 레벨을 14로 설정
-                        const marker = L.marker([store.lat, store.lng]).addTo(map);
-                        marker.bindPopup(`
-                            <b>${store.name}</b><br>
-                            ${store.province} ${store.city}<br>
-                            ${store.phone || '전화번호 없음'}
-                        `);
-                    } else {
-                        alert('검색된 매장이 없습니다.');
-                    }
-                })
-                .catch(error => console.error('매장 정보를 검색하는 중 오류 발생:', error));
-        };
-    });
+document.addEventListener("DOMContentLoaded", function() {
+    const map = L.map('map').setView([37.5665, 126.9780], 11); // 서울 중심으로 초기화
+
+    // OpenStreetMap 타일 레이어 추가
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // 매장 데이터를 불러와서 마커 추가
+    let allStores = [];
+    fetch('/api/stores')
+        .then(response => response.json())
+        .then(stores => {
+            allStores = stores;  // 전체 매장 데이터를 저장
+            stores.forEach(store => {
+                if (store.lat && store.lng) {
+                    const marker = L.marker([store.lat, store.lng]).addTo(map);
+                    marker.bindPopup(`
+                        <b>${store.name}</b><br>
+                        ${store.province} ${store.city}<br>
+                        ${store.phone || '전화번호 없음'}
+                    `);
+                }
+            });
+        })
+        .catch(error => console.error('매장 위치를 불러오는 중 오류 발생:', error));
+
+    // 검색 후 매장 위치로 지도 확대하는 함수
+    window.searchStores = function() {
+        const province = document.getElementById('province').value;
+        const city = document.getElementById('city').value;
+
+        if (!province || !city) {
+            alert("지역과 시/군/구를 선택해 주세요.");
+            return;
+        }
+
+        // 지역과 시/군/구에 맞는 매장만 필터링
+        const filteredStores = allStores.filter(store =>
+            store.province === province && store.city === city
+        );
+
+        if (filteredStores.length > 0) {
+            // 지도 확대 및 첫 번째 매장 위치로 이동
+            const store = filteredStores[0]; // 첫 번째 매장 선택
+            map.setView([store.lat, store.lng], 14); // 지도 확대
+            // 지도에서 해당 매장 마커 추가
+            const marker = L.marker([store.lat, store.lng]).addTo(map);
+            marker.bindPopup(`
+                <b>${store.name}</b><br>
+                ${store.province} ${store.city}<br>
+                ${store.phone || '전화번호 없음'}
+            `);
+
+            // 필터링된 매장 목록 화면에 표시
+            displayFilteredStores(filteredStores);
+        } else {
+            alert('검색된 매장이 없습니다.');
+        }
+    };
+
+    // 필터링된 매장만 화면에 표시하는 함수
+    function displayFilteredStores(filteredStores) {
+        const storeList = document.getElementById('store-list');
+        storeList.innerHTML = ''; // 기존 매장 목록 초기화
+
+        filteredStores.forEach(store => {
+            const storeItem = document.createElement('div');
+            storeItem.classList.add('store-item');
+
+            const imageUrl = store.image_url || 'img/default-store-image.jpg';
+            storeItem.innerHTML = `
+                <div class="card">
+                    <img src="${imageUrl}" alt="${store.name}" class="store-image">
+                    <div class="card-content">
+                        <h3 class="store-name">${store.name}</h3>
+                        <p class="store-address">${store.province} ${store.city}</p>
+                        <p class="store-phone">${store.phone}</p>
+                    </div>
+                </div>
+            `;
+            storeList.appendChild(storeItem);
+        });
+    }
+});
     </script>
     
 
