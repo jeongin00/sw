@@ -46,9 +46,8 @@
         <div class="header-right">
             <a href="/public/adduser.html"><button>회원가입</button></a>
             <a href="/public/login.html"><button>로그인</button></a>
-            <a href="/frontend/cart.html"><button>장바구니</button></a>
+            <a href="/public/cart.html"><button>장바구니</button></a>
             <button>주문배송</button>
-            <a href="#" onclick="checkLogin()"><button>마이페이지</button></a>
         </div>
     </header>
     <br><br>
@@ -127,7 +126,7 @@
                                 <div class="info">건강한 시크릿 존 케어</div>
                                 <div class="price">15000원</div> <!-- 가격 -->
                                 <!-- 장바구니 아이콘 -->
-                                <button class="cart-icon" aria-label="Add to cart">
+                                <button class="cart-icon" aria-label="Add to cart" onclick="addToCart(this)">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
@@ -141,7 +140,7 @@
                                 <div class="info">건강한 시크릿 존 케어</div>
                                 <div class="price">12000원</div> <!-- 가격 -->
                                 <!-- 장바구니 아이콘 -->
-                                <button class="cart-icon" aria-label="Add to cart">
+                                <button class="cart-icon" aria-label="Add to cart" onclick="addToCart(this)">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
@@ -155,7 +154,7 @@
                                 <div class="info">건강한 시크릿 존 케어</div>
                                 <div class="price">8000원</div> <!-- 가격 -->
                                 <!-- 장바구니 아이콘 -->
-                                <button class="cart-icon" aria-label="Add to cart">
+                                <button class="cart-icon" aria-label="Add to cart" onclick="addToCart(this)">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
@@ -169,7 +168,7 @@
                                 <div class="info">건강한 시크릿 존 케어</div>
                                 <div class="price">5000원</div> <!-- 가격 -->
                                 <!-- 장바구니 아이콘 -->
-                                <button class="cart-icon" aria-label="Add to cart">
+                                <button class="cart-icon" aria-label="Add to cart" onclick="addToCart(this)">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
@@ -185,7 +184,7 @@
                                 <div class="info">바디 겸용 멀티 퍼퓸</div>
                                 <div class="price">4000원</div>
                                  <!-- 장바구니 아이콘 -->
-                                 <button class="cart-icon" aria-label="Add to cart">
+                                 <button class="cart-icon" aria-label="Add to cart" onclick="addToCart(this)">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
@@ -269,73 +268,27 @@ $('.down-btn').click(function() {
     }
 });
 
-// 모든 장바구니 버튼에 이벤트 리스너 추가
 
-document.querySelectorAll('.cart-icon').forEach(cartButton => {
-    cartButton.addEventListener('click', (event) => {
-        console.log('장바구니 버튼 클릭됨'); // 버튼 클릭 확인 로그
-        event.stopPropagation(); // 다른 클릭 이벤트가 실행되지 않도록 방지
+function addToCart(button) {
+    // .name 요소의 텍스트에서 대괄호 이후의 상품명만 가져옴
+    const fullName = button.parentElement.querySelector('.name').textContent.trim();
+    const productName = fullName.split('] ')[1]; // "] " 이후의 부분만 추출
 
-        // 현재 클릭된 상품의 정보 추출
-        const itemBox = cartButton.closest('.img-box'); // 해당 버튼의 상위 img-box 선택
-        const nameText = itemBox.querySelector('.name').innerText;
-
-        // 브랜드와 제품 이름 추출
-        const brand = nameText.match(/\[(.*?)\]/)?.[1] || ""; // 대괄호 안의 브랜드 추출
-        const productName = nameText.replace(/\[.*?\]\s*/, '').trim(); // 브랜드 제거 후 제품 이름만 추출
-
-        const priceText = itemBox.querySelector('.price').innerText.replace('원', '').replace(',', ''); // 가격 포맷 제거
-        const price = parseInt(priceText, 10); // 정수형으로 변환
-
-        // 데이터베이스의 `category`와 매칭되는 카테고리 값 추출
-        const category = itemBox.getAttribute('data-category');
-
-        // fetch 요청에서 userId를 세션 API를 통해 가져오기
-        fetch('/api/user')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('로그인하지 않음');
-                }
-                return response.json();
-            })
-            .then(data => {
-                const userId = data.userId; // 세션에서 가져온 userId
-                console.log('전송할 userId:', userId); // 콘솔 로그 추가
-
-                return fetch('/add-product', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: productName,
-                        brand: brand,
-                        category: category,
-                        price: price,
-                        carbon: null, // carbon 값을 설정하지 않는 경우 null로 전송
-                        userId: userId // userId 추가
-                    })
-                });
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert("장바구니 추가 성공!"); // 성공 팝업
-                } else {
-                    alert("장바구니 추가 실패. 다시 시도해 주세요."); // 실패 시 메시지
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert("오류가 발생했습니다. 다시 시도해 주세요."); // 네트워크 오류 시 메시지
-            });
+    // 서버에 상품명 전달
+    $.ajax({
+        url: '/add-to-cart',  // 장바구니 추가 API 엔드포인트
+        method: 'POST',
+        data: { productName },  // 서버에 전달할 데이터
+        success: function(response) {
+            alert(response.message);  // 성공 시 알림
+        },
+        error: function(xhr) {
+            alert('장바구니 추가 실패: ' + xhr.responseJSON.message);  // 실패 시 알림
+        }
     });
-});
-
-
-
-
+}
 </script>
+<script src="/public/js/logincheck.js"></script>
 </body>
 
 </html>

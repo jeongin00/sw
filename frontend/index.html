@@ -1,23 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        /* 숫자 애니메이션 스타일 */
-        .carbon-savings {
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            margin: 20px 0;
-            color: #28a745;
-            animation: fadeIn 1s ease-in-out;
-        }
-    
-        /* 페이드 인 효과 */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <meta name="author" content="GREEN POWER" />
@@ -60,9 +43,8 @@
         <div class="header-right">
             <a href="/public/adduser.html"><button>회원가입</button></a>
             <a href="/public/login.html"><button>로그인</button></a>
-            <a href="/frontend/cart.html"><button>장바구니</button></a>
+            <a href="/public/cart.html"><button>장바구니</button></a>
             <button>주문배송</button>
-            <a href="#" onclick="checkLogin()"><button>마이페이지</button></a>
         </div>
     </header>
     <br><br>
@@ -108,7 +90,7 @@
        <button class="main-button">자원 회수</button>
        <button class="main-button">멤버쉽/쿠폰</button>
        <button class="main-button">이벤트</button>
-       <button class="main-button">지역 행사</button>
+       <a class="homepage-logo-link" href="/public/local.html"><button class="main-button">지역 행사</button>
    </nav>
    <hr class="category-divider2">
    
@@ -463,8 +445,7 @@
             updateProductSlider();
         });
     });
-
-    //탄소량 자바
+ //탄소량 관련 js   
  // 페이지 로드 시 또는 새로고침 시 탄소 절약량 표시 및 애니메이션 효과
  document.addEventListener('DOMContentLoaded', function () {
         function animateCarbonSavings(finalValue) {
@@ -533,9 +514,10 @@
         // 초기 실행
         generateCarbonSavings();
     });
+    //탄소 자바 끝
     </script>
     <script src="/public/js/logincheck.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--캔버스 자바스크립트-->
 
 </body>
 </html>

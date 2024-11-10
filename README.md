@@ -17,9 +17,9 @@ mypage 버튼 바꾸고 자바스크립트 각자 추가해야함
 (<a href="#" onclick="checkLogin()"><button>마이페이지</button></a>)
 
 
-유나 코드 수정부분
-frontend>css
-style.css 마지막 부분에 탄소량 애니메이션 css추가
-frontend>index.html
-롤링베너 밑에 그래프랑 탄소량 추가
-자바스크립트 맨밑에 추가!
+전체 페이지 
+    <script src="/public/js/logincheck.js"></script>  //로그인 로그아웃
+추가
+
+mypage 전체적으로 수정했고 living 상품 onclick="addToCart(this) 추가에다가 자바스크립트도 추가함
+테이블 전체 변경 cart product

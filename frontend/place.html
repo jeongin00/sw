@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="css/style_place.css"> <!-- 필요한 경우 경로 수정 -->
       <!-- Leaflet CSS -->
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-      <!-- Leaflet JavaScript -->
-      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
  <!-- Font Awesome 라이브러리 추가 -->
  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
@@ -35,8 +32,6 @@
  <!-- Customized Bootstrap Stylesheet -->
  <link href="css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Google Maps API 추가 (API 키 필요) -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
 
 </head>
 </head>
@@ -139,7 +134,7 @@
     </div>
 
     <!-- 지도 영역 -->
-    <div id="map" style="width: 1000px; height: 500px; margin: 20px auto;"></div>
+    <div id="map"></div>
 
     <!-- 매장 목록 UI -->
     <div id="store-list" class="store-list">
@@ -247,7 +242,6 @@
     });
 }
 </script>
-
 <script>
     const regionData = {
         "서울특별시": ["종로구", "중구", "용산구", "성동구", "광진구", "동대문구", "중랑구", "성북구", "강북구", "도봉구", "노원구", "은평구", "서대문구", "마포구", "양천구", "강서구", "구로구", "금천구", "영등포구", "동작구", "관악구", "서초구", "강남구", "송파구", "강동구"],
@@ -296,15 +290,7 @@
     // 페이지 로드 시 전체 매장 데이터를 불러옴
     document.addEventListener('DOMContentLoaded', loadStores);
     
-    // 초기화된 지도를 설정
-    document.addEventListener("DOMContentLoaded", function() {
-        const map = L.map('map').setView([37.5665, 126.9780], 11); // 서울 중심으로 초기화
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
-    });
-    
+  
     // 모든 매장을 가져오는 함수
     async function loadStores() {
         try {
@@ -399,7 +385,73 @@
             updatePageInfo();
         }
     }
+</script>   
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const map = L.map('map').setView([37.5665, 126.9780], 11); // 서울 중심으로 초기화
+    
+        // OpenStreetMap 타일 레이어 추가
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+    
+        // 매장 데이터를 불러와서 마커 추가
+        fetch('/api/stores')
+            .then(response => response.json())
+            .then(stores => {
+                stores.forEach(store => {
+                    if (store.lat && store.lng) {
+                        const marker = L.marker([store.lat, store.lng]).addTo(map);
+                        marker.bindPopup(`
+                            <b>${store.name}</b><br>
+                            ${store.province} ${store.city}<br>
+                            ${store.phone || '전화번호 없음'}
+                        `);
+                    }
+                });
+            })
+            .catch(error => console.error('매장 위치를 불러오는 중 오류 발생:', error));
+        
+        // 검색 후 매장 위치로 지도 확대하는 함수
+        window.searchStores = function() {
+            const province = document.getElementById('province').value;
+            const city = document.getElementById('city').value;
+        
+            if (!province || !city) {
+                alert("지역과 시/군/구를 선택해 주세요.");
+                return;
+            }
+        
+            // 매장 검색 후, 해당 위치로 지도 확대
+            fetch('/api/stores')
+                .then(response => response.json())
+                .then(allStores => {
+                    // 검색된 매장만 필터링
+                    const filteredStores = allStores.filter(store =>
+                        store.province === province && store.city === city
+                    );
+                    
+                    if (filteredStores.length > 0) {
+                        const store = filteredStores[0]; // 첫 번째 매장 선택
+                        // 해당 매장의 위도, 경도로 지도 이동
+                        map.setView([store.lat, store.lng], 14); // 줌 레벨을 14로 설정
+                        const marker = L.marker([store.lat, store.lng]).addTo(map);
+                        marker.bindPopup(`
+                            <b>${store.name}</b><br>
+                            ${store.province} ${store.city}<br>
+                            ${store.phone || '전화번호 없음'}
+                        `);
+                    } else {
+                        alert('검색된 매장이 없습니다.');
+                    }
+                })
+                .catch(error => console.error('매장 정보를 검색하는 중 오류 발생:', error));
+        };
+    });
     </script>
+    
 
 </body>
 </html>
