@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql'); // npm install mysql
+const mysql = require('mysql2'); // npm install mysql
 const path = require('path'); // public 안에 html을 연결해줌
 const static = require('serve-static'); // 조상 경로 설정 sw폴더를 임의정으로 상위폴더로 설정
 const session = require('express-session');
