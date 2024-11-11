@@ -331,7 +331,7 @@ nav.main-menu:hover .category-menu {
     height: 500px;
     width: calc(100% - 500px);
     z-index: 0;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 .rolling-banner {
@@ -421,6 +421,65 @@ nav.main-menu:hover .category-menu {
     margin: 0 20px;
 }
 
+
+/*** 탄소 css***/
+#big-canvas-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 1000px; /* Reduce width */
+    height: 460px; /* Reduce height */
+    background-color: #ffffff; /* Green background */
+    padding: 20px;
+    color: #000000;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.525);
+    margin: 0 auto; /* Center align */
+    margin-bottom: 50px;
+}
+
+#canvas-container {
+    width: 65%; /* Smaller width for left section */
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carbon-summary {
+    width: 35%; /* Adjusted width if needed */
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 100px;
+    padding: 15px; /* Padding inside the border */
+    border: 2px solid #2a5cb184; /* White border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for a slight 3D effect */
+    color: #000000a2;
+    margin-right: 20px;
+}
+
+#canvas-container-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 33px; /* Slightly smaller title */
+    margin-bottom: 10px;
+    color: #1b5a13;
+}
+
+#carbon-savings {
+    text-align: center;
+    font-size: 17px; /* Smaller font for text */
+    font-weight: bold;
+    color: #30963a;
+}
+#carbon-savings p {
+    text-decoration: underline;
+    text-decoration-color: #30963a; /* Adjust color as needed */
+    text-decoration-thickness: 1px; /* Optional for thicker underline */
+}
+
 /*** 가로줄3-1***/
 .category-divider3-1 {
     border: none; /* 기본 테두리 제거 */
@@ -429,6 +488,7 @@ nav.main-menu:hover .category-menu {
     margin: 10px 600px 60px 600px; /* 위 아래 좌 우 여백 0px */
 
 }
+
 /***** 추천하는 신상 제품 *****/
 .middle-text {
     text-align: center;
@@ -462,6 +522,35 @@ nav.main-menu:hover .category-menu {
 .product-price {
     margin-top: 20px;
 }*/
+
+/***** 추천하는 신상 패키지 *****/
+.middle-text {
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: bold;
+}
+.new-package img {
+    width: 500px; /* 이미지 가로 크기 */
+    height: 250px; /* 이미지 세로 크기 */
+    object-fit: cover; /* 이미지 비율 유지하며 크기 조정 */
+    margin-bottom: 50px;
+}
+
+/* 중앙 정렬 및 여백 설정 */
+.new-package-container {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    align-items: center;
+    gap: 20px; /* 두 상품 사이의 여백 설정 */
+}
+
+.new-package {
+    display: flex;
+    flex-direction: column; /* 이미지와 텍스트를 세로로 정렬 */
+    align-items: center;
+    text-align: center;
+    width: 600px; /* 각 상품의 너비 설정 */
+}
 
 
 /***** 요즘 주목 받는 제품 & 요즘 주목 받는 체험 *****/

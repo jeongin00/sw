@@ -194,6 +194,57 @@
 
    <!-- -------------------------------------------------------------------------------------------------- -->
 
+    <!-- main JavaScript -->
+<script>
+    // 스크롤 이동 함수
+    function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+
+    // 맨 위로 스크롤 함수
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+
+   // 구독 버튼 기능
+   document.getElementById('subscribe-button').addEventListener('click', () => {
+        fetch('/api/user')
+            .then(response => response.json())
+            .then(data => {
+                if (data.userId) {
+                    checkSubscription();
+                } else {
+                    alert('로그인이 필요해요!');
+                    window.location.href = '/public/login.html';
+                }
+            });
+    });
+
+    function checkSubscription() {
+        fetch('/check-subscription')
+            .then(response => response.json())
+            .then(data => {
+                if (data.isSubscribed) {
+                    alert('이미 구독을 했습니다!');
+                } else {
+                    window.location.href = '/frontend/oksubscribe.html';
+                }
+            })
+            .catch(error => console.error('오류:', error));
+    }
+
+        // 버튼 색상 변경 함수
+        function changeButtonColor(isDragging) {
+        const button = document.getElementById('subscribe-button');
+        if (isDragging) {
+            button.style.backgroundColor = '#3fb543'; // 연한 초록색
+        } else {
+            button.style.backgroundColor = '#2b914b'; // 원래 색상
+        }
+    }
+</script>
 </body>
 <script src="/public/js/logincheck.js"></script>
 </html>
