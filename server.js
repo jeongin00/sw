@@ -396,6 +396,65 @@ app.get('/api/user-carbon', (req, res) => {
 
 // 구독상품 페이지
 // 구독상품 페이지 - 카테고리에 따라 상품을 필터링하는 API
+// 구독 상품 페이지의 구독 상품 관리 버튼의 구독상태 확인 체크
+// 로그인 및 구독 상태 확인 API
+app.get('/check-subscription', (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({ loggedIn: false, message: '로그인 필요' });
+    }
+
+    const userId = req.session.userId;
+
+    pool.query('SELECT issubscribe FROM users WHERE id = ?', [userId], (err, results) => {
+        if (err) {
+            console.error('DB 오류:', err);
+            return res.status(500).json({ message: 'DB 오류' });
+        }
+
+        if (results.length > 0) {
+            const isSubscribed = results[0].issubscribe === 1;
+            res.json({ loggedIn: true, isSubscribed });
+        } else {
+            res.status(404).json({ message: '사용자 데이터를 찾을 수 없습니다.' });
+        }
+    });
+});
+
+// subscribe.html에서 버튼 클릭 시 구독 상태 확인 기능 추가
+function handleSubscription() {
+    fetch('/check-subscription')
+        .then(response => response.json())
+        .then(data => {
+            if (!data.loggedIn) {
+                // 로그인하지 않은 경우
+                document.getElementById("subscription-management").style.display = "none";
+                document.getElementById("login-message").style.display = "block";
+                document.getElementById("subscribe-message").style.display = "none";
+            } else if (!data.isSubscribed) {
+                // 로그인은 했으나 구독하지 않은 경우
+                document.getElementById("subscription-management").style.display = "none";
+                document.getElementById("login-message").style.display = "none";
+                document.getElementById("subscribe-message").style.display = "block";
+            } else {
+                // 로그인과 구독 모두 완료된 경우
+                document.getElementById("subscription-management").style.display = "block";
+                document.getElementById("login-message").style.display = "none";
+                document.getElementById("subscribe-message").style.display = "none";
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching subscription status:', error);
+        });
+
+    // 버튼 스타일 업데이트
+    document.getElementById("subscription-management-btn").classList.add("active-button");
+    document.getElementById("product-list-btn").classList.remove("active-button");
+    localStorage.setItem("activeButton", "subscription-management");
+}
+
+
+// 구독상품 페이지
+// 구독상품 페이지 - 카테고리에 따라 상품을 필터링하는 API
 app.get('/products', (req, res) => {
     const category = req.query.category;
     let query = 'SELECT * FROM product_subscribe';
