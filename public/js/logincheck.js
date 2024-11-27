@@ -3,23 +3,74 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             const headerRight = document.querySelector('.header-right');
-            
+            const welcomeSection = document.querySelector('#welcome-section');
+            const progressIndicator = document.querySelector('.progress-indicator');
+            const progressLabels = document.querySelectorAll('.progress-labels .label');
+
             if (data.loggedIn) {
                 headerRight.innerHTML = `
-                    
-                    <span>${data.userName}님&nbsp;&nbsp;&nbsp;</span> 
+                    <span>${data.userName}님&nbsp;&nbsp;&nbsp;</span>
                     <a href="#" onclick="logout()"><button>로그아웃</button></a>
                     <a href="/public/cart.html"><button>장바구니</button></a>
                     <button>주문배송</button>
                     <a href="/public/mypage.html"><button>마이페이지</button></a>
-                    <!-- 환영 메시지 추가 -->
                 `;
+
+                // 환영 메시지와 진행 바 추가
+                welcomeSection.innerHTML = `
+                    <div class="welcome-box">
+                        <div class="profile">
+                            <div class="profile-circle">S</div>
+                            <div class="welcome-content">
+                                <div class="welcome-message">
+                                  씨앗 <span>${data.userName}</span>님, 반갑습니다!
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-bar">
+                                        <div class="progress-indicator"></div>
+                                    </div>
+                                    <div class="progress-labels">
+                                        <span class="label" style="left: 0%;">씨앗</span>
+                                        <span class="label" style="left: 25%;">새싹</span>
+                                        <span class="label" style="left: 50%;">꽃</span>
+                                        <span class="label" style="left: 75%;">열매</span>
+                                        <span class="label" style="left: 100%;">나무</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // 진행 상태에 따른 변경
+                let progressPercent = 0;
+
+                if (data.cnt >= 40) {
+                    progressPercent = 100;
+                } else if (data.cnt >= 30) {
+                    progressPercent = 75;
+                } else if (data.cnt >= 20) {
+                    progressPercent = 50;
+                } else if (data.cnt >= 10) {
+                    progressPercent = 25;
+                }
+
+                // 공을 진행 바에서 더 오른쪽으로 이동시키기 위해 5%를 더 추가
+                progressPercent += 2;
+
+                // 공 이동
+                const progressIndicator = document.querySelector('.progress-indicator');
+                progressIndicator.style.transition = 'left 0.3s ease'; // 부드럽게 이동하게 하기 위해 transition 추가
+                progressIndicator.style.left = `${Math.min(progressPercent, 100)}%`;  // 최대 100%로 제한
+
             } else {
                 // 로그인 상태가 아닐 때 HTML의 기본 설정 경로를 사용합니다.
             }
         })
         .catch(error => console.error('로그인 상태 확인 실패:', error));
 });
+
+
 function logout() {
     fetch('/process/logout', { method: 'POST', credentials: 'same-origin' }) // 로그아웃 요청
         .then(response => {
@@ -32,10 +83,6 @@ function logout() {
         })
         .catch(error => console.error('로그아웃 요청 실패:', error));
 }
-
-
-
-
 
 
 

@@ -41,7 +41,7 @@
     <header>
         <div class="header-left">
             <i class="fas fa-chevron-down icon"></i> <!-- 아래로 향하는 아이콘 추가 -->
-            <button>입점 신청</button>
+            <button onclick="location.href='/seller/start.html'">입점 신청</button>
         </div>
         <div class="header-right">
             <a href="/public/adduser.html"><button>회원가입</button></a>
@@ -75,11 +75,11 @@
             <button class="category-button" id="category-toggle">카테고리</button>
             <ul class="category-menu" id="category-menu">
                 <li><a href="/public/selfcare.html">셀프케어</a></li>
-                <li><a href="/public/supplies.html">리빙</a></li>
+                <li><a href="/public/living.html">리빙</a></li>
                 <li><a href="/public/pet.html">펫 용품</a></li>
                 <li><a href="/public/fassion.html">패션</a></li>
                 <li><a href="/public/supplies.html">문구용품</a></li>
-                <li><a href="/public/supplies.html">푸드</a></li>
+                <li><a href="/public/food.html">푸드</a></li>
                 <li><a href="/public/agricultural.html">친환경 농산물</a></li>
                 <li><a href="/public/kit.html">취미/키트</a></li>
                 <li><a href="#">체험</a></li>
@@ -102,12 +102,12 @@
         <h2 id="category-title">전체</h2>
         <div class="category-divider"></div> <!-- 카테고리 아래 회색 줄 -->
         <button onclick="filterProducts('전체')">전체</button>
-        <button onclick="window.location.href='supplies.html'">셀프케어</button>
-        <button onclick="window.location.href='supplies.html'">리빙</button>
+        <button onclick="window.location.href='selfcare.html'">셀프케어</button>
+        <button onclick="window.location.href='living.html'">리빙</button>
         <button onclick="window.location.href='pet.html'">펫 용품</button>
         <button onclick="window.location.href='fassion.html'">패션</button>
         <button onclick="window.location.href='supplies.html'">문구용품</button>
-        <button onclick="window.location.href='supplies.html'">푸드</button>
+        <button onclick="window.location.href='food.html'">푸드</button>
         <button onclick="window.location.href='agricultural.html'">친환경 농산물</button>
         <button onclick="window.location.href='kit.html'">취미/키트</button>
     </aside>

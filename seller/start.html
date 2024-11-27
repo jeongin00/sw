@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <meta name="author" content="GREEN POWER" />
     <meta name="description" content="다양한 친환경 제품을 만나보세요. 환경을 지키는 소비! GREEN STORE!" />
-    <title>회원가입</title>
+    <title>로그인</title>
     <meta content="" name="keywords">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="/public/css/yuna.css"> <!-- 필요한 경우 경로 수정 -->
@@ -40,7 +40,7 @@
     <header>
         <div class="header-left">
             <i class="fas fa-chevron-down icon"></i> <!-- 아래로 향하는 아이콘 추가 -->
-            <button onclick="location.href='/seller/start.html'">입점 신청</button>
+            <button onclick="location.href='/public/start.html'">입점 신청</button>
         </div>
         <div class="header-right">
             <a href="/public/adduser.html"><button>회원가입</button></a>
@@ -94,69 +94,75 @@
        <a class="homepage-logo-link" href="/public/local.html"><button class="main-button">지역 행사</button></a>
     </nav>
     <hr class="category-divider2">
-    
-    <!-- 회원가입 폼 -->
-    <div class="login-container signup-container">
-        <h2>회원가입</h2>
-        <form method="POST" action="/process/adduser">
-            <input type="text" name="id" id="id" placeholder="아이디" required>
-            <input type="text" name="name" id="name" placeholder="사용자명" required>
-            <input type="number" name="age" id="age" placeholder="나이" required min="1">
-            <input type="password" name="password" id="password" placeholder="비밀번호 (8~12자, 영문+숫자+특수문자)"  required> <!--pattern="(?=.*\d)(?=.*[a-zA-Z])(?=.*[\W]).{8,12}" title="8~12자, 영문+숫자+특수문자를 포함해야 합니다."-->
-            <div class="checkbox-section">
-                <input type="checkbox" name="terms" required>
-                <label for="terms">이용약관에 동의합니다</label>
-            </div>
-            <button type="submit" class="signup-btn">회원가입</button>
-        </form>
+    <!-- 로그인 폼 -->
+    <div class="login-container">
+        <h2>로그인</h2>
+        <!-- 폼 없이 버튼 클릭으로 페이지 이동 -->
+        <input type="text" name="id" placeholder="아이디" />
+        <input type="password" name="password" placeholder="비밀번호 (8~12자, 영문+숫자+특수문자)" />
+        <div class="remember">
+            <input type="checkbox" name="remember" />
+            <label for="remember">아이디 저장</label>
+        </div>
+        <!-- 클릭 시 seller.html로 이동 -->
+        <a href="/seller/seller.html">
+            <button type="button" class="login-btn">로그인</button>
+        </a>
+        <div class="helper-links">
+            <a href="#">아이디 찾기</a>
+            <a href="#">비밀번호 찾기</a>
+        </div>
+        <div class="join-section">
+            그린스토어와 함께해주세요!
+            <a href="/public/adduser.html">회원가입</a>
+        </div>
     </div>
-
   <!-- Footer start -->
-  <hr class="category-divider2">
-  <div class="footer bg-dark text-white-50 pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-      <div class="container py-5">
-          <div class="row g-5">
-              <div class="col-lg-3 col-md-6">
-                  <h5 class="text-white mb-4">Get In Touch</h5>
-                  <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i> 부산광역시 사하구 낙동대로 550번길 37 </p>
-                  <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>심유나, 황정인 </p>
-                  <p class="mb-2"><i class="fa fa-envelope me-3"></i> info@example.com</p>
-                  <div class="d-flex pt-2">
-                      <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                      <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                      <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                  </div>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                  <h5 class="text-white mb-4">Quick Links</h5>
-                  <a class="btn btn-link text-white-50" href="">1:1 문의</a>
-                  <a class="btn btn-link text-white-50" href="">자주하는 질문</a>
-                  <a class="btn btn-link text-white-50" href="">공지사항</a>
-                  <a class="btn btn-link text-white-50" href="">이용약관</a>
-                  <a class="btn btn-link text-white-50" href="">개인정보처리방침</a>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                  <h5 class="text-white mb-4">Newsletter</h5>
-                  <p class="newsletter-text">뉴스레터를 구독하면 다양한 소식을 받을 수 있어요.</p>
-                  <div class="position-relative mx-auto" style="max-width: 400px;">
-                      <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                      <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">신청</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="container-fluid">
-          <div class="copyright">
-              <div class="row">
-                  <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                      &copy; <a class="border-bottom" href="#">GREEN STORE</a>, All Right Reserved. 
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  <!-- Footer End -->
-    <script src="/js/test.js"></script>
-    <script src="/public/js/logincheck.js"></script>
+<hr class="category-divider2">
+<div class="footer bg-dark text-white-50 pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Get In Touch</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i> 부산광역시 사하구 낙동대로 550번길 37 </p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>심유나, 황정인 </p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i> info@example.com</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Quick Links</h5>
+                <a class="btn btn-link text-white-50" href="">1:1 문의</a>
+                <a class="btn btn-link text-white-50" href="">자주하는 질문</a>
+                <a class="btn btn-link text-white-50" href="">공지사항</a>
+                <a class="btn btn-link text-white-50" href="">이용약관</a>
+                <a class="btn btn-link text-white-50" href="">개인정보처리방침</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Newsletter</h5>
+                <p class="newsletter-text">뉴스레터를 구독하면 다양한 소식을 받을 수 있어요.</p>
+                <div class="position-relative mx-auto" style="max-width: 400px;">
+                    <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">신청</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="#">GREEN STORE</a>, All Right Reserved. 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
 </body>
+</script>
+<script src="/public/js/logincheck.js"></script>
 </html>

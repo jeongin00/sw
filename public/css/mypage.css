@@ -158,6 +158,171 @@ h2 {
 
 
 
+/* 컨테이너 레이아웃 */
+.point-donation-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 20px auto;
+    margin-top:80px;
+    max-width: 900px;
+}
+
+/* 포인트 상자 */
+.points-box {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-cell {
+    font-size: 14px;
+    color: #555;
+}
+
+.info-cell-large2 {
+    font-size: 20px;
+    color: #555; /* 보라색 강조 */
+    text-align: right;
+}
+
+.info-cell-large {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6a0dad; /* 보라색 강조 */
+    text-align: right;
+}
+
+/* 기부 현황 바 스타일 */
+.donation-progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0; /* 바의 배경색 */
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.donation-progress-filled {
+    width: 30%; /* 기부된 퍼센트 (3000 / 10000 = 30%) */
+    height: 100%;
+    background-color: #9d7dc4; /* 초록색 */
+    border-radius: 10px 0 0 10px; /* 둥근 끝 */
+}
+
+
+
+/* 기부 상자 */
+.donation-box {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px; /* 상자 너비 제한 */
+    margin: 0 auto; /* 가운데 정렬 */
+}
+
+.donation-box h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.donation-box p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.5; /* 가독성 개선 */
+}
+
+.donation-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 각 항목 간격 */
+    align-items: flex-start; /* 왼쪽 정렬 */
+}
+
+.donation-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    width: 100%;
+    border-bottom: 1px solid #eee; /* 구분선 추가 */
+}
+
+.donation-logo {
+    width: 40px; /* 이미지 크기 조정 */
+    height: auto;
+    margin-right: 15px; /* 텍스트와 간격 추가 */
+    vertical-align: middle;
+}
+
+.donation-item span {
+    flex: 1;
+    font-size: 16px; /* 텍스트 크기 */
+    color: #333;
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+}
+
+.donation-button {
+    background-color: #6a0dad;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px; /* 버튼 폰트 크기 조정 */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* 호버 효과 추가 */
+}
+
+.donation-button:hover {
+    background-color: #5a0cbd;
+    transform: scale(1.05); /* 살짝 커지는 효과 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .donation-box {
+        padding: 15px;
+    }
+
+    .donation-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px; /* 항목 간격 추가 */
+    }
+
+    .donation-button {
+        align-self: flex-end; /* 버튼 정렬 */
+    }
+}
+
+
+
+
+.footprint-icon.green {
+    color: green;
+}
+
 #footprint-container {
     display: flex;
     justify-content: center;
@@ -167,10 +332,11 @@ h2 {
 
 .footprint-icon {
     font-size: 30px;
-    color: lightgray;
+    color: green;
     transition: color 0.3s;
-    transform: translateY(5px); /* 기본 위치 조정 */
+    transform: translateY(5px); 
 }
+
 
 .footprint-icon:nth-child(odd) {
     transform: translateY(-10px); /* 홀수번째 아이콘을 위로 올림 */
@@ -179,3 +345,131 @@ h2 {
 .footprint-icon.active {
     color: green; /* 색상이 활성화될 때의 색상 */
 }
+
+
+
+/*멤버스*/
+
+.progress-container {
+    width: 80%;
+    position: relative;
+    margin: 20px auto; /* auto로 좌우 여백을 설정하여 센터 정렬 */
+    
+}
+
+h2 {
+    margin-bottom: 50px; /* 아래쪽 여백 추가 */
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #e0e0e0;
+    position: relative;
+    border-radius: 5px;
+}
+
+.progress-indicator {
+    width: 20px;
+    height: 20px;
+    background-color: #4caf50;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    transform: translateX(-50%);
+    transition: left 0.3s ease;
+}
+
+
+.progress-labels {
+    width: 100%;
+    position: absolute;
+    top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+label {
+    position: absolute;
+    font-size: 12px;
+    color: #333;
+    text-align: center;
+    white-space: nowrap; /* 텍스트 강제 줄바꿈 방지 */
+}
+
+.welcome-box {
+    background-color: #4caf50; /* 녹색 배경 */
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px auto;
+    color: white;
+    width: 80%; /* 적절한 박스 너비 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile {
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 세로축 가운데 정렬 */
+}
+
+.profile-circle {
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    color: #4caf50;
+    font-size: 28px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 0px; /* 원과 오른쪽 콘텐츠 사이 간격 */
+    position: relative; /* 위치 조정을 위해 설정 */
+    left: 25px; /* 동그라미를 약간 오른쪽으로 이동 */
+}
+
+.welcome-content {
+    flex-grow: 1; /* 남은 공간을 차지 */
+}
+
+.welcome-message {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px; /* 진행 바와 간격 */
+    margin-left: 65px; /* 왼쪽 여백을 자동으로 설정 */
+}
+
+.progress-container {
+    margin-top: 10px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5); /* 연한 흰색 */
+    border-radius: 5px;
+    position: relative;
+}
+
+.progress-indicator {
+    width: 20px;
+    height: 20px;
+    background-color: white; /* 동그라미 흰색 */
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    transform: translateX(-50%);
+    transition: left 0.3s ease;
+}
+
+.progress-labels {
+    width: 100%;
+    position: absolute;
+    top: 25px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: white;
+}
+
+

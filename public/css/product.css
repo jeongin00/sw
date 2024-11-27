@@ -104,7 +104,7 @@
 .item-list > .list > div > .item-1 > .img-box > .con-txt > .info {
     font-size: 14px;
     font-weight: 300;
-    color: #888;
+    color: #088A29;
     margin: 10px 0;
     white-space: nowrap; /* 텍스트를 한 줄로 표시 */
     overflow: hidden;
@@ -114,6 +114,7 @@
 .item-list > .list > div > .item-1 > .img-box > .con-txt > .price {
     font-size: 16px;
     font-weight: bold;
+    margin: 10px 0;
 }
 
 .item-list > .list > div > .item-1 > .img-box > .con-txt > .info > p {
