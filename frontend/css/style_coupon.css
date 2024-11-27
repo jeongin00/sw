@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.coupon-code {
+    margin-top:5px;
+    margin-bottom:10px;
+}
+
+.coupon-container {
+    background: #fff;
+    border: 5px dashed #4CAF50;
+    border-radius: 20px;
+    padding: 30px;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.coupon-header {
+    margin-bottom: 20px;
+}
+
+.green-title {
+    color: #4CAF50;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.coupon-header h2 {
+    font-size: 20px;
+    color: #333;
+    margin-top: 10px;
+}
+
+.coupon-body {
+    margin-top: 5px;
+    margin-bottom:10px;
+}
+
+.coupon-code {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.stamp-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.stamp {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #4CAF50;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stamp.filled {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.reward {
+    grid-column: span 5;
+    font-size: 14px;
+    color: #4CAF50;
+    margin-top: 10px;
+}
+
+.coupon-button {
+    grid-column: span 5;
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 10px;
+
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom:20px;
+}
+
+.coupon-footer {
+    margin-top: 20px;
+}
+
+.back-button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: #45a049;
+}

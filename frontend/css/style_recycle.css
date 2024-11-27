@@ -257,7 +257,225 @@ nav.main-menu:hover .category-menu {
 }
 /* =========================여기 까지가 header============================*/
 
+/* =========================여기부터 MAIN============================*/
+main {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  color: #333;
+}
 
+.intro {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.intro h2 {
+  font-size: 45px;
+  font-weight: bold;
+  color: #2B914B;
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
+
+.intro hr {
+  border: none;
+  border-top: 2px solid #0000005e;
+  width: 35%;
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+.intro p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 5px 0;
+}
+
+.store-search-text {
+  margin-left: 300px;
+  margin-right: 30px;
+  font-weight: bold;
+  color:rgba(0, 0, 0, 0.7);
+}
+
+.store-search-section {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  padding: 0 20px; /* 좌우 여백 추가 */
+}
+
+.store-search-box{
+  display: flex;
+  align-items: center;
+  padding: 0 20px; /* 좌우 여백 추가 */
+  width: 200px; /* 검색창 너비 조정 */
+  height: 35px; /* 검색창 높이 조정 */
+  border-radius: 20px; /*모서리 둥글게 */
+  padding: 0 15px; /* 내부 여백 */
+  font-size: 14px; /* 폰트 크기 */
+  background-color: #2b914b;
+  color: white;
+}
+/* 입력 필드 스타일 */
+.store-search-box input {
+  width: 200px; /* 검색창 너비 조정 */
+  height: 35px; /* 검색창 높이 조정 */
+  border: none; /* 테두리 제거 */
+  border-radius: 20px; /* 모서리를 둥글게 */
+  padding: 0 15px; /* 내부 좌우 여백 */
+  font-size: 14px; /* 텍스트 크기 */
+  text-align: center; /* 텍스트 및 placeholder 가운데 정렬 */
+  background-color: transparent; /* 입력 필드 배경 제거 */
+}
+
+/* Placeholder 스타일 */
+.store-search-box input::placeholder {
+  border: none; /* 테두리 제거 */
+  color: #ffffff8f; /* placeholder 텍스트 색상 */
+  text-align: center; /* placeholder 텍스트 가운데 정렬 */
+  font-size: 14px; /* placeholder 텍스트 크기 */
+}
+
+.filter-section {
+  display: flex;
+  justify-content: flex-end; /* 드롭다운을 오른쪽으로 정렬 */
+  margin-bottom: 50px;
+  margin-right: 300px;
+  padding: 0 20px; /* 좌우 여백 추가 */
+}
+
+
+.sort-select {
+  width: 120px; /* 드롭다운 너비 */
+  height: 40px; /* 드롭다운 높이 */
+  font-size: 14px;
+  border: 1px solid #ccc; /* 테두리 */
+  border-radius: 20px; /* 둥근 모서리 */
+  padding-left: 10px; /* 텍스트 왼쪽 여백 */
+  padding-right: 10px;
+  background-color: #fff; /* 배경색 */
+}
+
+.outline-card-hr {
+  border: none;
+  border-top: 2px solid #2B914B;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 70%;
+}
+
+#between-card-hr {
+  border: none;
+  border-top: 2px solid #ccc;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 70%;
+}
+
+.coupon-section {
+  display: flex;
+  flex-direction: column; /* 수직 정렬 */
+  align-items: center; /* 수평 가운데 정렬 */
+  gap: 30px; /* 카드 간격 */
+}
+
+.coupon-card {
+  width: 80%; /* 카드의 너비를 제한 */
+  max-width: 1000px; /* 카드 최대 너비 */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.qr-code {
+  flex: 0 0 auto; /* Flexbox에서 크기 조정이 고정되지 않도록 수정 */
+  width: 250px; /* 가로 길이 */
+  height: 200px; /* 세로 길이 */
+  border: 2px solid #2B914B; /* 테두리 */
+  display: flex; /* Flexbox 사용 */
+  justify-content: center; /* 콘텐츠를 가로로 가운데 정렬 */
+  align-items: center; /* 콘텐츠를 세로로 가운데 정렬 */
+  font-size: 12px; /* 텍스트 크기 */
+  color: #2B914B; /* 텍스트 색상 */
+}
+
+.qr-code img {
+  width: 250px; /* QR 코드 이미지 너비 */
+  height: 200px; /* QR 코드 이미지 높이 */
+  border: none; /* QR 코드 테두리 */
+}
+
+
+.coupon-info {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.coupon-info p {
+  margin: 5px 0;
+  font-size: 15px;
+  color: #555;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.confirm-button,
+.delete-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 17px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.confirm-button {
+  background-color: #2B914B;
+  height: 45px;
+  width: 200px;
+  margin-right: 50px;
+}
+
+.delete-button {
+  background-color: gray;
+  height: 45px;
+  width: 200px;
+  margin-right: 50px;
+}
+
+.see-more {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.see-more-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #333;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  height:50px;
+  width:200px;
+  margin-top:20px;
+  margin-bottom:50px;
+}
+
+/* =========================여기 까지가 MAIN============================*/
+
+/* =========================여기 까지가 FOOTER============================*/
 /*** Footer ***/
 .footer .row {
     display: flex;

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자원 관리 쿠폰</title>
+    <link rel="stylesheet" href="css/style_coupon.css">
+</head>
+<body>
+    <div class="coupon-container">
+        <div class="coupon-header">
+            <h1 class="green-title">GREEN STORE</h1>
+            <h2>'그린하우스' 자원 관리 쿠폰</h2>
+        </div>
+        <div class="coupon-body">
+            <p class="coupon-code">쿠폰 코드: <span id="coupon-code"></span></p>
+            <div class="stamp-grid">
+                <!-- 스탬프를 표시할 동그라미 -->
+                <div class="stamp filled"></div>
+                <div class="stamp filled"></div>
+                <div class="stamp filled"></div>
+                <div class="stamp filled"></div>
+                <div class="stamp filled"></div>
+                <div class="stamp filled"></div>
+                <div class="stamp filled"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <p class="reward">5% 할인 쿠폰 수령(스탬프 10개)</p>
+                <button class="coupon-button">쿠폰 받기</button>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <p class="reward">7% 할인 쿠폰 수령(스탬프 20개)</p>
+                <button class="coupon-button">쿠폰 받기</button>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <div class="stamp"></div>
+                <p class="reward">10% 할인 쿠폰 수령(스탬프 30개)</p>
+                <button class="coupon-button">쿠폰 받기</button>
+            </div>
+        </div>
+        <div class="coupon-footer">
+            <button onclick="goBack()" class="back-button">돌아가기</button>
+        </div>
+    </div>
+
+    <script>
+        // 랜덤 쿠폰 코드 생성
+        const couponCode = Math.random().toString(36).substr(2, 10).toUpperCase();
+        document.getElementById('coupon-code').innerText = couponCode;
+
+        // 돌아가기 버튼 동작
+        function goBack() {
+            window.location.href = "recycle.html";
+        }
+    </script>
+</body>
+</html>

@@ -89,15 +89,90 @@
        <button class="main-button">About Us</button>
        <a class="homepage-logo-link" href="subscribe.html"><button class="main-button">구독상품 관리</button></a>
        <a class="homepage-logo-link" href="/frontend/place.html"><button class="main-button">주변매장 찾기</button></a>
-       <button class="main-button">자원 회수</button>
+       <a class="homepage-logo-link" href="/frontend/place.html"><button class="main-button">자원 회수</button></a>
        <a class="homepage-logo-link" href="/frontend/membership.html"><button class="main-button">멤버쉽/쿠폰</button></a>
        <button class="main-button">이벤트</button>
        <a class="homepage-logo-link" href="/public/local.html"><button class="main-button">지역 행사</button></a>
    </nav>
    <hr class="category-divider2">
+<!-- HEADER END -->
 
 
-       <!-- Footer Start -->
+<!-- MAIN Start -->
+<main>
+    <div class="intro">
+        <h2>자원 회수 쿠폰 관리</h2>
+        <hr>
+        <p>그린 스토어 제휴된 상점에서 재활용품을 가져가면 스탬프로 적립할 수 있는 자원회수 관리 시스템입니다.</p>
+        <p>각 상점마다 QR코드를 통해 쿠폰과 스탬프를 손쉽게 관리할 수 있어요.</p>
+        <p>우리 집 주변 상점에서 재활용하고 스탬프를 모아 할인 쿠폰을 받으세요!</p>
+        <p>재활용으로 지구를 지키고, 저렴하게 필요한 제품을 구매하세요.</p>
+        <hr>
+    </div>
+
+    <div class="store-search-section">
+        <span class="store-search-text">상점 검색하기 </span>
+        <div class="store-search-box">
+            <input type="text" placeholder="상점 이름을 입력하세요.">
+        </div>
+    </div>
+    <hr class="outline-card-hr">
+    <div class="filter-section">
+        <select id="sort" class="sort-select">
+            <option value="date">날짜 순</option>
+            <option value="store">상점명 순</option>
+        </select>
+    </div>
+    
+
+    <div class="coupon-section">
+        <!-- 첫 번째 쿠폰 -->
+        <div class="coupon-card">
+            <div class="qr-code">
+                <img src="img/qrcode.png" alt="QR Code 1">
+            </div>
+            <div class="coupon-info">
+                <p><strong>상점:</strong> 지구랑</p>
+                <p>경상남도 김해시 인제로 261번길 마릴라 1층</p>
+                <p>쿠폰 생성 날짜: 2024-11-27</p>
+                <p>(QR코드를 찍으면 쿠폰을 볼 수 있어요!)</p>
+            </div>
+            <div class="button-group">
+                <button class="confirm-button" onclick="openCouponPopup('coupon1.html')">쿠폰 확인하기</button>
+                <button class="delete-button">쿠폰 삭제하기</button>
+            </div>
+        </div>
+        <hr id="between-card-hr">
+    
+        <!-- 두 번째 쿠폰 -->
+        <div class="coupon-card">
+            <div class="qr-code">
+                <img src="img/qrcode.png" alt="QR Code 2">
+            </div>
+            <div class="coupon-info">
+                <p><strong>상점:</strong> 그린하우스</p>
+                <p>경기도 성남시 분당구 정자일로 95 2층</p>
+                <p>쿠폰 생성 날짜: 2024-10-12</p>
+                <p>(QR코드를 찍으면 쿠폰을 볼 수 있어요!)</p>
+            </div>
+            <div class="button-group">
+                <button class="confirm-button" onclick="openCouponPopup('coupon2.html')">쿠폰 확인하기</button>
+                <button class="delete-button">쿠폰 삭제하기</button>
+            </div>
+        </div>
+        <hr class="outline-card-hr">
+    </div> 
+
+    <div class="see-more">
+        <button class="see-more-button">see more</button>
+    </div>
+</main>
+
+
+<!-- MAIN END -->
+
+
+<!-- Footer Start -->
        <div class="footer bg-dark text-white-50 pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
@@ -143,4 +218,29 @@
     <!-- Footer End -->
 
 <!-- header JavaScript -->
+
+
+ <!-- MAIN JavaScript -->
 <script src="/public/js/logincheck.js"></script>
+
+<script>
+    function openCouponPopup(url) {
+        // 팝업 창 설정
+        const popupWidth = 500;
+        const popupHeight = 600;
+        const left = (window.screen.width / 2) - (popupWidth / 2);
+        const top = (window.screen.height / 2) - (popupHeight / 2);
+
+        // 새 창 열기
+        window.open(
+            url, 
+            'CouponPopup', 
+            `width=${popupWidth},height=${popupHeight},top=${top},left=${left},resizable=yes,scrollbars=yes`
+        );
+    }
+</script>
+
+<script src="/public/js/logincheck.js"></script>
+
+</body>
+</html>
