@@ -16,7 +16,7 @@ const pool = mysql.createPool({
     connectionLimit: 10,
     host: 'localhost',
     user: 'root',
-    password: '1234',
+    password: '0000',
     database: 'swdata',
     debug: false
 });
@@ -36,6 +36,7 @@ app.use(session({
 // 정적 파일 제공 설정
 app.use('/public', static(path.join(__dirname, 'public'))); // public 디렉토리 지정
 app.use('/frontend', express.static(path.join(__dirname, 'frontend'))); // frontend 디렉토리 지정
+app.use('/seller', express.static(path.join(__dirname, 'seller')));
 
 // 유나 메인페이지를 기본 페이지로 설정 
 app.get('/', (req, res) => {
@@ -213,10 +214,22 @@ app.get('/public/mypage.html', (req, res) => {
 });
 
 // 로그인 상태 확인
+// 로그인 상태 확인
 app.get('/check-login', (req, res) => {
     if (req.session.userId) {
-        const userName = req.session.userName; // 세션에 저장된 사용자 이름 가져오기
-        res.json({ loggedIn: true, userName });
+        const userId = req.session.userId; // 세션에 저장된 사용자 ID 가져오기
+
+        pool.getConnection((err, conn) => {
+            const query = 'SELECT cnt FROM users WHERE id = ?';
+            conn.query(query, [userId], (err, results) => {
+                conn.release(); // 연결 해제
+
+                const userName = req.session.userName; // 세션에 저장된 사용자 이름 가져오기
+                const cnt = results[0]?.cnt || 0; // cnt 값, 없으면 0으로 설정
+
+                res.json({ loggedIn: true, userName, cnt }); // cnt 포함하여 반환
+            });
+        });
     } else {
         res.json({ loggedIn: false });
     }
@@ -320,45 +333,68 @@ app.get('/get-cart-items', (req, res) => {
 });
 
 app.post('/purchase-item', (req, res) => {
-    const { userId } = req.session;
-    const { productName, itemTotalCarbon } = req.body; // itemTotalCarbon을 받아옴
+    const userId = req.session.userId;
+    const { productName, itemTotalCarbon } = req.body;
 
     if (!userId) {
         return res.status(401).json({ message: '로그인이 필요합니다.' });
     }
 
-    const getCartQuery = `
-        SELECT carbon FROM cart WHERE user_id = ? AND name = ?
-    `;
-    pool.query(getCartQuery, [userId, productName], (err, cartResults) => {
-        if (err || cartResults.length === 0) {
-            console.error('카트 조회 중 오류 발생:', err);
-            return res.status(500).json({ message: '카트 조회 실패' });
+    pool.getConnection((err, conn) => {
+        if (err) {
+            console.error('DB 연결 오류:', err);
+            return res.status(500).json({ message: 'DB 연결 실패' });
         }
 
-        // 여기서 itemTotalCarbon 값을 사용
-        // 기존의 cart에서 가져온 carbon을 itemTotalCarbon으로 대체
-        const carbon = itemTotalCarbon; 
-
-        // 유저의 carbon을 itemTotalCarbon으로 업데이트
-        const updateUserCarbonQuery = `
-            UPDATE users SET carbon = COALESCE(carbon, 0) + ? WHERE id = ?
-        `;
-        pool.query(updateUserCarbonQuery, [carbon, userId], (err) => {
-            if (err) {
-                console.error('유저 탄소 업데이트 중 오류 발생:', err);
-                return res.status(500).json({ message: '탄소 절감량 업데이트 실패' });
+        // 현재 carbon, point 및 cnt 값 조회
+        const getUserQuery = 'SELECT carbon, point, cnt FROM users WHERE id = ?';
+        conn.query(getUserQuery, [userId], (err, results) => {
+            if (err || results.length === 0) {
+                conn.release();
+                console.error('유저 정보 조회 실패:', err);
+                return res.status(404).json({ message: '유저 정보를 찾을 수 없습니다.' });
             }
 
-            // 카트에서 해당 항목 삭제
-            const deleteCartItemQuery = `DELETE FROM cart WHERE user_id = ? AND name = ?`;
-            pool.query(deleteCartItemQuery, [userId, productName], (err) => {
+            const currentCarbon = results[0].carbon || 0;
+            const currentPoints = results[0].point || 0;
+            const currentCnt = results[0].cnt || 0;
+
+            // 새로운 carbon 계산
+            const newCarbon = currentCarbon + itemTotalCarbon;
+
+            // 추가 포인트 계산
+            const pointsToAdd = Math.floor(newCarbon / 10) * 1000 - Math.floor(currentCarbon / 10) * 1000;
+            const updatedPoints = currentPoints + pointsToAdd;
+
+            // 구매 횟수 증가
+            const updatedCnt = currentCnt + 1;
+
+            // 유저 정보 업데이트
+            const updateUserQuery = 'UPDATE users SET carbon = ?, point = ?, cnt = ? WHERE id = ?';
+            conn.query(updateUserQuery, [newCarbon, updatedPoints, updatedCnt, userId], (err) => {
                 if (err) {
-                    console.error('카트 항목 삭제 중 오류 발생:', err);
-                    return res.status(500).json({ message: '카트 항목 삭제 실패' });
+                    conn.release();
+                    console.error('유저 정보 업데이트 실패:', err);
+                    return res.status(500).json({ message: '유저 정보 업데이트 실패' });
                 }
 
-                res.status(200).json({ message: '구매 완료', totalCarbonReduction: carbon });
+                // 카트에서 해당 상품 삭제
+                const deleteCartItemQuery = 'DELETE FROM cart WHERE user_id = ? AND name = ?';
+                conn.query(deleteCartItemQuery, [userId, productName], (err) => {
+                    conn.release();
+                    if (err) {
+                        console.error('카트 항목 삭제 중 오류 발생:', err);
+                        return res.status(500).json({ message: '카트 항목 삭제 실패' });
+                    }
+
+                    // 최종 응답 반환
+                    res.status(200).json({
+                        message: '구매 완료',
+                        totalCarbonReduction: newCarbon,
+                        updatedPoints,
+                        updatedCnt,
+                    });
+                });
             });
         });
     });
@@ -387,6 +423,47 @@ app.get('/api/user-carbon', (req, res) => {
             res.json({ carbon: userCarbon });
         } else {
             console.log('해당 userId에 대한 데이터가 없습니다.');
+            res.status(404).json({ message: '사용자 데이터를 찾을 수 없습니다.' });
+        }
+    });
+});
+
+app.get('/api/user-points', (req, res) => {
+    const userId = req.session.userId;
+
+    if (!userId) {
+        return res.status(401).json({ message: '로그인이 필요합니다.' });
+    }
+
+    const query = 'SELECT carbon, point FROM users WHERE id = ?';
+    pool.query(query, [userId], (err, results) => {
+        if (err) {
+            console.error('포인트 조회 중 오류 발생:', err);
+            return res.status(500).json({ message: '포인트 조회 실패' });
+        }
+
+        if (results.length > 0) {
+            const carbon = results[0].carbon || 0;
+            let points = results[0].point || 0;
+
+            // 동적으로 포인트 계산
+            const calculatedPoints = Math.floor(carbon / 10) * 1000;
+
+            // DB에 저장된 포인트와 계산된 포인트가 다르면 업데이트
+            if (points !== calculatedPoints) {
+                points = calculatedPoints;
+                const updateQuery = 'UPDATE users SET point = ? WHERE id = ?';
+                pool.query(updateQuery, [points, userId], (updateErr) => {
+                    if (updateErr) {
+                        console.error('포인트 업데이트 중 오류 발생:', updateErr);
+                        return res.status(500).json({ message: '포인트 업데이트 실패' });
+                    }
+                });
+            }
+            
+            // 계산된 포인트를 반환
+            res.json({ points });
+        } else {
             res.status(404).json({ message: '사용자 데이터를 찾을 수 없습니다.' });
         }
     });
@@ -569,6 +646,7 @@ app.get('/check-subscription', (req, res) => {
         }
     });
 });
+
 
 // 서버 리스닝
 app.listen(3000,() => {
